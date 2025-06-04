@@ -5,6 +5,10 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import { dbConnection } from './mongo.js';
+import { createAdmin } from '../src/Auth/auth.controller.js';
+import { createRoles } from '../src/role/role.controller.js';
+import authRoutes from '../src/auth/auth.routes.js';
+import userRoutes from '../src/users/user.routes.js';
 
 const middlewares = (app) => {
     app.use(express.urlencoded({ extended: false }));
@@ -15,7 +19,8 @@ const middlewares = (app) => {
 }
 
 const routes = (app) => {
-
+    app.use('/BancoSystem/v1/auth', authRoutes);
+    app.use('/BancoSystem/v1/users', userRoutes);
 }
 
 const conectarDB = async () => {
@@ -37,6 +42,8 @@ export const initServer = async () => {
         conectarDB();
         routes(app);
         app.listen(port);
+        await createRoles();
+        await createAdmin();
         console.log(`Server running on port: ${port}`);
     } catch (err) {
         console.log(`Server init failed: ${err}`);
