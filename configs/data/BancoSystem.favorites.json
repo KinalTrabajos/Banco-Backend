@@ -1,0 +1,18 @@
+[{
+  "_id": {
+    "$oid": "6841150c74fed9e961c22132"
+  },
+  "user": {
+    "$oid": "6840be1ac6cec65db62c1404"
+  },
+  "favoriteUser": {
+    "$oid": "6840bb57e9a51b6d02d38e3c"
+  },
+  "createdAt": {
+    "$date": "2025-06-05T03:54:52.067Z"
+  },
+  "isFavorite": true,
+  "updatedAt": {
+    "$date": "2025-06-05T03:54:52.067Z"
+  }
+}]
