@@ -1,4 +1,5 @@
 import User from "../users/user.model.js";
+import Account from "../account/account.model.js";
 import { hash, verify } from "argon2";
 import { generateJWT } from "../helpers/generate-jwt.js";
 
@@ -51,7 +52,7 @@ export const login = async (req, res) => {
     }
 }
 
-export const register = async(req, res) => {
+export const register = async (req, res) => {
     try {
         const data = req.body;
 
@@ -70,6 +71,15 @@ export const register = async(req, res) => {
             role: data.role,
             typeAccount: data.typeAccount
         })
+
+        await Account.create({
+            keeperUser: user._id,
+            noAccount: user.noAccount,
+            typeAccount: user.typeAccount,
+            balance: 0,
+            points: 0
+        });
+
         return res.status(200).json({
             msg: "User registered successfully",
             userDetails: {

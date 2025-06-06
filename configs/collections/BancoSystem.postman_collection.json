@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "4ec316c0-9689-4f15-a8fa-5d41ec74f64c",
+		"_postman_id": "435079f1-6e6f-4c2a-86f0-47808b91086d",
 		"name": "BancoSystem",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37413747"
+		"_exporter_id": "37413624"
 	},
 	"item": [
 		{
@@ -47,7 +47,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQwYjgzMTcyMjUxNTcyODg4ODRjNWUiLCJpYXQiOjE3NDkwNzE5NzQsImV4cCI6MTc0OTA3NTU3NH0.XtpQdpnBb4ip7kBlcBdG15SIIWr7tcBgXqaoX7bFTvU",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQyNTI1OWNlY2QzMTExNTU0ZGUwYzYiLCJpYXQiOjE3NDkyMTgwMTcsImV4cCI6MTc0OTIyMTYxN30.1fbagCyECSF8HgOC4cKR5qje7cJSxpvSRKndaBuxqLA",
 								"type": "text"
 							}
 						],
@@ -84,7 +84,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQwYjgzMTcyMjUxNTcyODg4ODRjNWUiLCJpYXQiOjE3NDkwNzE5NzQsImV4cCI6MTc0OTA3NTU3NH0.XtpQdpnBb4ip7kBlcBdG15SIIWr7tcBgXqaoX7bFTvU",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQyNTI1OWNlY2QzMTExNTU0ZGUwYzYiLCJpYXQiOjE3NDkyMTgwMTcsImV4cCI6MTc0OTIyMTYxN30.1fbagCyECSF8HgOC4cKR5qje7cJSxpvSRKndaBuxqLA",
 								"type": "text"
 							}
 						],
@@ -212,6 +212,69 @@
 								"v1",
 								"users",
 								"6840912e3af5b9fa8e51ae75"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "AccountById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Peralta\",\r\n    \"username\": \"Anjoga\",\r\n    \"noAccount\": 1234567890,\r\n    \"dpi\": \"1234567890123\",\r\n    \"direction\": \"Lago de amatitlan\", \r\n    \"phone\": \"58694128\",\r\n    \"email\": \"pepa@gmail.com\",\r\n    \"password\": \"1234567809\",\r\n    \"nombreEmpresa\": \"Braulio.CO\",\r\n    \"income\": 101,\r\n    \"role\": \"USER_ROLE\",\r\n    \"typeAccount\": \"EMPRESARIAL\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/account/getAccount/6842f2ebcf01beca4e14db0f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"account",
+								"getAccount",
+								"6842f2ebcf01beca4e14db0f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllAccount",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQyNTI1OWNlY2QzMTExNTU0ZGUwYzYiLCJpYXQiOjE3NDkyMTgxMjQsImV4cCI6MTc0OTIyMTcyNH0.-NZcYXeV6Q5itNwq_U-lGGEhPyv8YcTR8y-YL4Iiq84",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/account/getAccount",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"account",
+								"getAccount"
 							]
 						}
 					},

@@ -10,6 +10,8 @@ import { createAdmin } from '../src/auth/auth.controller.js';
 import { createRoles } from '../src/role/role.controller.js';
 import authRoutes from '../src/auth/auth.routes.js';
 import userRoutes from '../src/users/user.routes.js';
+import accountRoutes from "../src/account/account.routes.js";
+import { rewardPointsService } from '../src/account/account.controller.js';
 
 const middlewares = (app) => {
     app.use(express.urlencoded({ extended: false }));
@@ -23,6 +25,7 @@ const middlewares = (app) => {
 const routes = (app) => {
     app.use('/BancoSystem/v1/auth', authRoutes);
     app.use('/BancoSystem/v1/users', userRoutes);
+    app.use('/BancoSystem/v1/account', accountRoutes); 
 }
 
 const conectarDB = async () => {
@@ -47,6 +50,7 @@ export const initServer = async () => {
         await createRoles();
         console.log(`Server running on port: ${port}`);
         await createAdmin();
+        setInterval(rewardPointsService, 86400000); //Cada 24 horas (si quiere para 10 s cambiar a 10000)
     } catch (err) {
         console.log(`Server init failed: ${err}`);
     }
