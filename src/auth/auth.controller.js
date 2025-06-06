@@ -85,31 +85,45 @@ export const register = async(req, res) => {
     }
 }
 
-export const createAdmin = async(req, res) => {
-    try{
-        const existsAdmin = await User.findOne({ role: 'ADMIN_ROLE' });
+export const createAdmin = async () => {
+    try {
+        const role = 'ADMIN_ROLE';
 
-        if(!existsAdmin){
-            const hashed = await hash('1234567890');
-            const adminUser = new User({
-                name: 'Admin',
-                username: 'admin',
-                dpi: '3976668450101',
-                direction: 'Admin Address',
-                phone: '00000000',
-                email: 'admin@gmail.com',
-                password: hashed,
-                work: 'Admin',
-                income: 1000,
-                role: 'ADMIN_ROLE',
-                typeAccount: 'NORMAL'
-            });
-
-            await adminUser.save();
-
+        const existsAdmin = await User.findOne({ role });
+        if (existsAdmin) {
+            console.log('An ADMIN_ROLE user already exists. Cannot create another one.');
+            return null;
         }
+
+        const hashedPassword = await hash('1234567890');
+
+        const adminUser = new User({
+            name: 'Admin',
+            username: 'admin',
+            dpi: '3976668450101',
+            direction: 'Admin Address',
+            phone: '00000000',
+            email: 'admin@gmail.com',
+            password: hashedPassword,
+            work: 'Admin',
+            income: 1000,
+            role,
+            typeAccount: 'NORMAL'
+        });
+
+        await adminUser.save();
+
+        console.log({
+            name: adminUser.name,
+            username: adminUser.username,
+            email: adminUser.email,
+            role: adminUser.role
+        });
+
+        return adminUser;
+
     } catch (error) {
-        console.log('error creating admin:', error);
-        
+        console.error('Error creating admin:', error);
+        return null;
     }
-}
+};

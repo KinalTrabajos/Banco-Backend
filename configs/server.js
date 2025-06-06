@@ -4,8 +4,9 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import limiter from '../src/middlewares/validate-cant-peticiones.js';
 import { dbConnection } from './mongo.js';
-import { createAdmin } from '../src/Auth/auth.controller.js';
+import { createAdmin } from '../src/auth/auth.controller.js';
 import { createRoles } from '../src/role/role.controller.js';
 import authRoutes from '../src/auth/auth.routes.js';
 import userRoutes from '../src/users/user.routes.js';
@@ -16,6 +17,7 @@ const middlewares = (app) => {
     app.use(express.json());
     app.use(helmet());
     app.use(morgan('dev'));
+    app.use(limiter);
 }
 
 const routes = (app) => {
@@ -43,8 +45,8 @@ export const initServer = async () => {
         routes(app);
         app.listen(port);
         await createRoles();
-        await createAdmin();
         console.log(`Server running on port: ${port}`);
+        await createAdmin();
     } catch (err) {
         console.log(`Server init failed: ${err}`);
     }
