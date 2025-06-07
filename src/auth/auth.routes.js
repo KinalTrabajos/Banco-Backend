@@ -20,4 +20,12 @@ router.post(
     register
 )
 
+router.post(
+    '/registerEmpresa',
+    registerValidator,
+    validatejwt,
+    validateAdmin,
+    register
+)
+
 export default router;
