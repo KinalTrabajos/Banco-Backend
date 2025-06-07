@@ -55,7 +55,7 @@ const UserSchema = Schema({
     income: {
         type: Number,
         required: [true, 'Income is required'],
-        min: [101, 'Income must be greater than 100']
+        min: [100, 'Income must be greater than 100']
     },
     role: {
         type: String,

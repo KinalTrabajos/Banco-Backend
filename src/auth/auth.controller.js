@@ -57,18 +57,8 @@ export const register = async(req, res) => {
 
         const encryptedPassword = await hash(data.password);
         const user = await User.create({
-            name: data.name,
-            username: data.username,
-            dpi: data.dpi,
-            direction: data.direction,
-            phone: data.phone,
-            email: data.email,
+            ...data,
             password: encryptedPassword,
-            work: data.work,
-            nombreEmpresa: data.nombreEmpresa,
-            income: data.income,
-            role: data.role,
-            typeAccount: data.typeAccount
         })
         return res.status(200).json({
             msg: "User registered successfully",

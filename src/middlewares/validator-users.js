@@ -52,3 +52,15 @@ export const validateAdmin = (req, res, next) => {
 
     next();
 };
+
+export const confirmDeletionValidation = (req, res, next) => {
+    const { confirm } = req.body;
+
+    if (!confirm) {
+        return res.status(400).json({
+            success: false,
+            msg: 'Confirm is required'
+        }); 
+    }
+    next();
+};
