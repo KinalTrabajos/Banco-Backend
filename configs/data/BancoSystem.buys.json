@@ -1,0 +1,32 @@
+[{
+  "_id": {
+    "$oid": "6844e4d6d72d6c0d86ae4bba"
+  },
+  "keeperUser": {
+    "$oid": "6842f2ebcf01beca4e14db0c"
+  },
+  "items": [
+    {
+      "name": "Laptop Dell",
+      "quantity": 1,
+      "price": 1000,
+      "_id": {
+        "$oid": "6844e4d6d72d6c0d86ae4bbb"
+      }
+    },
+    {
+      "name": "Mouse Logitech",
+      "quantity": 2,
+      "price": 25,
+      "_id": {
+        "$oid": "6844e4d6d72d6c0d86ae4bbc"
+      }
+    }
+  ],
+  "totalTransaccion": 1050,
+  "status": true,
+  "date": {
+    "$date": "2025-06-08T01:18:14.504Z"
+  },
+  "__v": 0
+}]
