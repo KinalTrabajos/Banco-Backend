@@ -1,5 +1,6 @@
 import User from '../users/user.model.js'
 import Role from '../role/role.model.js';
+import Account from '../account/account.model.js';
 
 export const validRole = async(role = '') => {
     if (role === "") return;  
@@ -37,3 +38,10 @@ export const existUsername = async(username = '') => {
         throw new Error(`Username ${username} already use`)
     }
 }
+
+export const existAccountById = async (id = '') => {
+    const existAccount = await Account.findById(id);
+    if (!existAccount) {
+        throw new Error(`Account with ID ${id} does not exist in the database`);
+    }
+};
