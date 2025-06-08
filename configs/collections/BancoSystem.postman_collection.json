@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "435079f1-6e6f-4c2a-86f0-47808b91086d",
+		"_postman_id": "9cfbb9a3-edb8-4733-9a2f-9360f7580370",
 		"name": "BancoSystem",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "37413624"
@@ -275,6 +275,185 @@
 								"v1",
 								"account",
 								"getAccount"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Favorites",
+			"item": [
+				{
+					"name": "Agregar Favorito",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"accountId\": \"6842f2ebcf01beca4e14db0f\",\n  \"favoriteAccountId\": \"6842f30ccf01beca4e14db20\",\n  \"alias\": \"Cuenta Secundaria\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/favorites",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"favorites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Favoritos por Cuenta",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/favorites/6842f2ebcf01beca4e14db0f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"favorites",
+								"6842f2ebcf01beca4e14db0f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alternar Estado de Favorito",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"accountId\": \"6842f2ebcf01beca4e14db0f\",\n  \"favoriteAccountId\": \"6842f30ccf01beca4e14db20\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/favorites/toggle",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"favorites",
+								"toggle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Alias del Favorito",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"accountId\": \"6842f2ebcf01beca4e14db0f\",\n  \"favoriteAccountId\": \"6842f30ccf01beca4e14db20\",\n  \"alias\": \"Alias actualizado\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/favorites/alias",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"favorites",
+								"alias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Favorito",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"accountId\": \"6842f2ebcf01beca4e14db0f\",\n  \"favoriteAccountId\": \"6842f30ccf01beca4e14db20\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/favorites",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"favorites"
 							]
 						}
 					},

@@ -11,6 +11,7 @@ import { createRoles } from '../src/role/role.controller.js';
 import authRoutes from '../src/auth/auth.routes.js';
 import userRoutes from '../src/users/user.routes.js';
 import accountRoutes from "../src/account/account.routes.js";
+import favoriteRoutes from '../src/favorites/favorite.routes.js';
 import { rewardPointsService } from '../src/account/account.controller.js';
 
 const middlewares = (app) => {
@@ -26,6 +27,7 @@ const routes = (app) => {
     app.use('/BancoSystem/v1/auth', authRoutes);
     app.use('/BancoSystem/v1/users', userRoutes);
     app.use('/BancoSystem/v1/account', accountRoutes); 
+    app.use('/BancoSystem/v1/favorites', favoriteRoutes);
 }
 
 const conectarDB = async () => {
