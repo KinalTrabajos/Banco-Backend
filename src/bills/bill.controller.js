@@ -2,24 +2,19 @@ import Bill from "./bill.model.js";
 
 export const getBills = async (req, res) => {
     try {
-        const userId = req.user._id;
-        const userRole = req.user.role;
+        const { role } = req.usuario;
 
-        let bills;
-
-        if (userRole === "ADMIN_ROLE") {
-            bills = await Bill.find()
-                .populate("user", "name email")
-                .populate("account", "noAccount balance");
-        } else {
-            bills = await Bill.find({ user: userId })
-                .populate("user", "name email")
-                .populate("account", "noAccount balance");
+        if (role !== "ADMIN_ROLE") {
+            return res.status(403).json({
+                msg: "Access denied. Only admins can view all invoices"
+            });
         }
 
-        res.status(200).json({
-            bills
-        });
+        const bills = await Bill.find()
+            .populate("user", "name email")
+            .populate("account", "noAccount balance");
+
+        res.status(200).json({ bills });
 
     } catch (error) {
         console.error(error);

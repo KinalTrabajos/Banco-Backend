@@ -18,9 +18,7 @@ router.get(
 
 router.get(
     "/",
-    [
-        validatejwt
-    ],
+    validatejwt,
     getBills
 )
 

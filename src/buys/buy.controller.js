@@ -42,7 +42,15 @@ export const createBuy = async (req, res) => {
 
 export const getBuys = async (req, res) => {
     try {
+        const { role } = req.usuario;
+
+        if (role !== "ADMIN_ROLE") {
+            return res.status(403).json({
+                msg: "Access denied. Only admins can view all purchases"
+            });
+        }
         const buys = await Buy.find().populate('keeperUser', 'name username email');
+
         res.status(200).json(buys);
     } catch (e) {
         console.error(e);
@@ -121,4 +129,3 @@ export const createBillFromBuy = async (req, res) => {
         });
     }
 };
-
