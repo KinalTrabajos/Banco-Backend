@@ -223,7 +223,7 @@
 			"name": "Account",
 			"item": [
 				{
-					"name": "AccountById",
+					"name": "GetByDPI",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -232,10 +232,10 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Peralta\",\r\n    \"username\": \"Anjoga\",\r\n    \"noAccount\": 1234567890,\r\n    \"dpi\": \"1234567890123\",\r\n    \"direction\": \"Lago de amatitlan\", \r\n    \"phone\": \"58694128\",\r\n    \"email\": \"pepa@gmail.com\",\r\n    \"password\": \"1234567809\",\r\n    \"nombreEmpresa\": \"Braulio.CO\",\r\n    \"income\": 101,\r\n    \"role\": \"USER_ROLE\",\r\n    \"typeAccount\": \"EMPRESARIAL\"\r\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/BancoSystem/v1/account/getAccount/6842f2ebcf01beca4e14db0f",
+							"raw": "http://localhost:8080/BancoSystem/v1/account/searchAccount?dpi=1234567890364",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -245,8 +245,13 @@
 								"BancoSystem",
 								"v1",
 								"account",
-								"getAccount",
-								"6842f2ebcf01beca4e14db0f"
+								"searchAccount"
+							],
+							"query": [
+								{
+									"key": "dpi",
+									"value": "1234567890364"
+								}
 							]
 						}
 					},
@@ -275,6 +280,41 @@
 								"v1",
 								"account",
 								"getAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByNoAccount",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/account/searchAccount?noAccount=5401484935",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"account",
+								"searchAccount"
+							],
+							"query": [
+								{
+									"key": "noAccount",
+									"value": "5401484935"
+								}
 							]
 						}
 					},

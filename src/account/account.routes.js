@@ -1,13 +1,15 @@
-import { getAccountById, getAllAccounts } from "./account.controller.js";
+import { getAccount, getAllAccounts } from "./account.controller.js";
 import { validatejwt } from "../middlewares/validate-JWT.js";
 import { validateAdmin } from "../middlewares/validator-users.js";
+import { validateAccountQuery } from "../middlewares/validate-account-query.js";
 import { Router } from "express";
 
 const router = Router();
 
 router.get(
-    '/getAccount/:id',
-    getAccountById
+    '/searchAccount',
+    validateAccountQuery,
+    getAccount
 )
 
 router.get(

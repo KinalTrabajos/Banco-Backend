@@ -1,14 +1,28 @@
 import Account from "./account.model.js"
+import User from "../users/user.model.js"
 
-export const getAccountById = async (req, res) => {
+export const getAccount = async (req, res) => {
     try {
-        const { id } = req.params;
-        const account = await Account.findById(id).populate('keeperUser', 'name email username');
+        const { noAccount, dpi } = req.query;
+        let account;
+
+        if (noAccount) {
+            account = await Account.findOne({ noAccount }).populate('keeperUser', 'name email username');
+        } else if (dpi) {
+            const user = await User.findOne({ dpi });
+            if (!user) {
+                return res.status(404).json({
+                    success: false,
+                    msg: 'Usuario con ese DPI no encontrado',
+                });
+            }
+            account = await Account.findOne({ keeperUser: user._id }).populate('keeperUser', 'name email username');
+        }
 
         if (!account) {
             return res.status(404).json({
                 success: false,
-                msg: 'Cuanto no entontrada revise el id'
+                msg: 'Cuenta no encontrada',
             });
         }
 
@@ -16,14 +30,15 @@ export const getAccountById = async (req, res) => {
             success: true,
             account
         });
+
     } catch (error) {
         return res.status(500).json({
             success: false,
-            msg: 'Error fetching account',
+            msg: 'Error al buscar la cuenta',
             error: error.message
         });
     }
-}
+};
 
 export const getAllAccounts = async (req, res) => {
     try {
