@@ -639,7 +639,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"toAccount\": \"5401484935\",\r\n    \"amount\": 150,\r\n    \"description\": \"Pago de cosas que me presto\"\r\n}",
+							"raw": "{\r\n    \"toAccount\": \"5401484935\",\r\n    \"amount\": 200,\r\n    \"description\": \"Pago de otras cosas\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

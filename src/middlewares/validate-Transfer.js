@@ -23,12 +23,17 @@ export const validateTransfer = async (req, res, next) => {
             return res.status(400).json({ msg: 'You cannot transfer to your own account' });
         }
 
-        if (senderAccount.balance < amount) {
-            return res.status(400).json({ msg: 'Insufficient balance' });
+        const commissionPercentage = 3.5;
+        const commissionAmount = (amount * commissionPercentage) / 100;
+        const totalToDeduct = amount + commissionAmount;
+
+        if (senderAccount.balance < totalToDeduct) {
+            return res.status(400).json({ msg: 'Insufficient balance to cover amount and commission' });
         }
 
         req.senderAccount = senderAccount;
         req.receiverAccount = receiverAccount;
+        req.commissionAmount = commissionAmount;
 
         next();
     } catch (error) {

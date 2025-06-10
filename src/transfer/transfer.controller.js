@@ -7,8 +7,11 @@ export const createTransfer = async (req, res) => {
 
         const senderAccount = req.senderAccount;
         const receiverAccount = req.receiverAccount;
+        const commissionAmount = req.commissionAmount || 0;
 
-        senderAccount.balance -= amount;
+        const totalToDeduct = amount + commissionAmount;
+
+        senderAccount.balance -= totalToDeduct;
         receiverAccount.balance += amount;
 
         await senderAccount.save();
@@ -18,17 +21,18 @@ export const createTransfer = async (req, res) => {
             fromUser,
             toAccount,
             amount,
-            description,
+            description
         });
 
         await newTransfer.save();
 
         res.status(201).json({
-            msg: "Transfer completed successfully",
+            msg: 'Transfer completed successfully',
             transfer: newTransfer,
+            commissionCharged: commissionAmount.toFixed(2)
         });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ msg: "Error processing transfer" });
+        res.status(500).json({ msg: 'Error processing transfer' });
     }
 };
