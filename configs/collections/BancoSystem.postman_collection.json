@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c8981c4c-2db6-495f-86d1-66fa82a0932e",
+		"_postman_id": "2af10826-7845-44d7-8f23-b25f9edcfa78",
 		"name": "BancoSystem",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "37413624"
@@ -616,6 +616,48 @@
 								"v1",
 								"bill",
 								"6842f2ebcf01beca4e14db0c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transfers",
+			"item": [
+				{
+					"name": "NewTransfer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQ3YWM5NTg0MjRkMmRkNGI3OWJlOTgiLCJpYXQiOjE3NDk1OTE5MTAsImV4cCI6MTc0OTU5NTUxMH0.C5H7mEQekmbiG6_EqTtOXStWhHJYuOJSxPaeUlaJnvs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"toAccount\": \"5401484935\",\r\n    \"amount\": 150,\r\n    \"description\": \"Pago de cosas que me presto\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/transfer/makeTransfer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"transfer",
+								"makeTransfer"
 							]
 						}
 					},
