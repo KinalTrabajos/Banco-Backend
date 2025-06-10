@@ -1,17 +1,17 @@
 export const validateAccountQuery = (req, res, next) => {
-    const { noAccount, dpi } = req.query;
+    const { noAccount, id } = req.query;
 
-    if (!noAccount && !dpi) {
+    if (!noAccount && !id) {
         return res.status(400).json({
             success: false,
-            msg: 'Debe proporcionar al menos noAccount o dpi como parámetro de búsqueda'
+            msg: 'Debe proporcionar al menos noAccount o id como parámetro de búsqueda'
         });
     }
 
-    if (dpi && dpi.length !== 13) {
+    if (id && !id.match(/^[0-9a-fA-F]{24}$/)) {
         return res.status(400).json({
             success: false,
-            msg: 'El DPI debe tener exactamente 13 caracteres'
+            msg: 'El ID proporcionado no es válido (debe tener 24 caracteres hexadecimales)'
         });
     }
 

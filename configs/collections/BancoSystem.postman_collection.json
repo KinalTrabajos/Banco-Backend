@@ -223,7 +223,7 @@
 			"name": "Account",
 			"item": [
 				{
-					"name": "GetByDPI",
+					"name": "GetByIdUser",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -235,7 +235,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/BancoSystem/v1/account/searchAccount?dpi=1234567890364",
+							"raw": "http://localhost:8080/BancoSystem/v1/account/searchAccount?id=6842f30ccf01beca4e14db1d",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -249,8 +249,8 @@
 							],
 							"query": [
 								{
-									"key": "dpi",
-									"value": "1234567890364"
+									"key": "id",
+									"value": "6842f30ccf01beca4e14db1d"
 								}
 							]
 						}

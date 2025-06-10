@@ -3,17 +3,17 @@ import User from "../users/user.model.js"
 
 export const getAccount = async (req, res) => {
     try {
-        const { noAccount, dpi } = req.query;
+        const { noAccount, id } = req.query;
         let account;
 
         if (noAccount) {
             account = await Account.findOne({ noAccount }).populate('keeperUser', 'name email username');
-        } else if (dpi) {
-            const user = await User.findOne({ dpi });
+        } else if (id) {
+            const user = await User.findById(id);
             if (!user) {
                 return res.status(404).json({
                     success: false,
-                    msg: 'Usuario con ese DPI no encontrado',
+                    msg: 'Usuario con ese ID no encontrado',
                 });
             }
             account = await Account.findOne({ keeperUser: user._id }).populate('keeperUser', 'name email username');
