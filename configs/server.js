@@ -58,7 +58,7 @@ export const initServer = async () => {
         await createRoles();
         console.log(`Server running on port: ${port}`);
         await createAdmin();
-        setInterval(rewardPointsService, 86400000); //Cada 24 horas (si quiere para 10 s cambiar a 10000)
+        setInterval(rewardPointsService, 5 * 60 * 1000); // Cada 5 minutos
     } catch (err) {
         console.log(`Server init failed: ${err}`);
     }

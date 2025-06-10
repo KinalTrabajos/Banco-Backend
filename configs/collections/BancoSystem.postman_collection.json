@@ -633,13 +633,13 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQ3YWM5NTg0MjRkMmRkNGI3OWJlOTgiLCJpYXQiOjE3NDk1OTE5MTAsImV4cCI6MTc0OTU5NTUxMH0.C5H7mEQekmbiG6_EqTtOXStWhHJYuOJSxPaeUlaJnvs",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQ3YWM5NTg0MjRkMmRkNGI3OWJlOTgiLCJpYXQiOjE3NDk1OTUzODEsImV4cCI6MTc0OTU5ODk4MX0.6VzKhP7q1eCj1pxRyOVL1cL38EC03-E-J5ZwH2gbqM8",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"toAccount\": \"5401484935\",\r\n    \"amount\": 200,\r\n    \"description\": \"Pago de otras cosas\"\r\n}",
+							"raw": "{\r\n    \"toAccount\": \"5401484935\",\r\n    \"amount\": 2000,\r\n    \"description\": \"Pago de vvxcxcxx\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

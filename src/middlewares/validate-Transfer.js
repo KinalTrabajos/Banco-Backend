@@ -1,6 +1,7 @@
 import Account from '../account/account.model.js';
+import Transfer from '../transfer/transfer.model.js';
 
-export const validateTransfer = async (req, res, next) => {
+export const validateTransferBase = async (req, res, next) => {
     try {
         const fromUser = req.usuario._id;
         const { toAccount, amount } = req.body;
@@ -39,5 +40,35 @@ export const validateTransfer = async (req, res, next) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ msg: 'Error validating transfer' });
+    }
+};
+
+export const validateTransferLimits = async (req, res, next) => {
+    try {
+        const fromUser = req.usuario._id;
+        const { amount } = req.body;
+
+        if (amount > 2000) {
+            return res.status(400).json({ msg: 'Transfers over 2000 are not allowed' });
+        }
+
+        const now = new Date();
+        const fiveMinutesAgo = new Date(now.getTime() - 5 * 60 * 1000); // 5 minutos atrás
+
+        const recentTransfers = await Transfer.find({
+            fromUser,
+            createdAt: { $gte: fiveMinutesAgo }
+        });
+
+        const totalTransferred = recentTransfers.reduce((sum, t) => sum + t.amount, 0);
+
+        if (totalTransferred + amount > 10000) {
+            return res.status(400).json({ msg: 'Transfer limit of 10000 exceeded within 5 minutes' });
+        }
+
+        next();
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: 'Error checking transfer limits' });
     }
 };
