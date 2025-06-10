@@ -3,9 +3,8 @@ import User from '../users/user.model.js'
 export const validateProperty = async (req, res, next) => {
     const { id } = req.params;
     const userLogued = req.usuario.id;
-    const user = req.usuario.role;
 
-    if (user != "ADMIN_ROLE" && userLogued !== id) {
+    if (userLogued !== id) {
         return res.status(403).json({
             success: false,
             msg: "Solo tu puedes modificar tu cuenta"
