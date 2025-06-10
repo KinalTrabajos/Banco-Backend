@@ -3,7 +3,7 @@ import { check } from "express-validator";
 import { deleteUser, getUsers, updateUser } from "./user.controller.js";
 import { existUserById, existUsername } from "../helpers/db-validator.js";
 import { validarCampos } from "../middlewares/validate-campos.js";
-import { validateJWT } from "../middlewares/validate-jwt.js";
+import { validatejwt } from "../middlewares/validate-JWT.js";
 import { validateProperty } from "../middlewares/validator-users.js"; 
 const router = Router()
 
@@ -12,7 +12,7 @@ router.get("/", getUsers)
 router.put(
     "/:id",
     [
-        validateJWT,
+        validatejwt,
         check("id", "Not a valid ID").isMongoId(),
         check("id").custom(existUserById),
         validateProperty,
@@ -25,7 +25,7 @@ router.put(
 router.delete(
     "/:id",
     [
-        validateJWT,
+        validatejwt,
         check("id", "Not a valid ID").isMongoId(),
         check("id").custom(existUserById),
         validateProperty,

@@ -1,15 +1,19 @@
 import { Schema, model } from 'mongoose';
 
-const FavoriteSchema = Schema({
-    user: {
+const FavoriteSchema = new Schema({
+    owner: { // el usuario autenticado que guarda el favorito
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Account',
         required: true
     },
-    favoriteUser: {
+    target: { // la cuenta marcada como favorita
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Account',
         required: true
+    },
+    alias: {
+        type: String,
+        trim: true
     },
     isFavorite: {
         type: Boolean,
@@ -20,6 +24,6 @@ const FavoriteSchema = Schema({
     versionKey: false
 });
 
-FavoriteSchema.index({ user: 1, favoriteUser: 1 }, { unique: true });
+FavoriteSchema.index({ owner: 1, target: 1 }, { unique: true });
 
 export default model('Favorite', FavoriteSchema);
