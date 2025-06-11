@@ -1,20 +1,25 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { deleteUser, getUsers, updateUser, updateUserPassword } from "./user.controller.js";
+import { getUsers, updateUser, updateUserPassword, viewUserById } from "./user.controller.js";
 import { existUserById, existUsername } from "../helpers/db-validator.js";
 import { validarCampos } from "../middlewares/validate-campos.js";
 import { validatejwt } from "../middlewares/validate-JWT.js";
-import { validateProperty, confirmDeletionValidation } from "../middlewares/validator-users.js"; 
+import { validateProperty, validateUserUpdate, validatePasswordChange, validateAdmin } from "../middlewares/validator-users.js"; 
 const router = Router()
 
-router.get("/", getUsers)
-
+router.get(
+    "/viewUsers", 
+    validateAdmin,
+    getUsers
+);
+router.get("/viewUserById/:id", viewUserById);
 router.put(
     "/updateUser/:id",
     [
         validatejwt,
         check("id", "Not a valid ID").isMongoId(),
         check("id").custom(existUserById),
+        validateUserUpdate,
         validateProperty,
         validarCampos
     ],
@@ -22,24 +27,12 @@ router.put(
 
 )
 
-router.delete(
-    "/:id",
-    [
-        validatejwt,
-        confirmDeletionValidation,
-        check("id", "Not a valid ID").isMongoId(),
-        check("id").custom(existUserById),
-        validateProperty,
-        validarCampos
-    ],
-    deleteUser
-)
-
 router.put(
     "/updatePassword/:id",
     [
         validatejwt,
         validateProperty,
+        validatePasswordChange,
         validarCampos
     ],
     updateUserPassword
