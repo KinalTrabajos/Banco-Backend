@@ -18,7 +18,6 @@ export const createBuy = async (req, res) => {
         const newBill = new Bill({
             account: cuenta._id,
             user: keeperUser,
-            numeroFactura: `F-${Date.now()}`,
             total: totalTransaccion,
         });
 
@@ -92,40 +91,6 @@ export const getBuyByUser = async (req, res) => {
             success: false,
             msg: "Error getting purchases",
             error: e.message
-        });
-    }
-};
-
-export const createBillFromBuy = async (req, res) => {
-    try {
-        const { buyId } = req.body;
-        const userId = req.usuario  ._id;
-
-        const buy = await Buy.findById(buyId);
-        if (!buy) return res.status(404).json({ msg: "Purchase not found" });
-
-        const account = await Account.findOne({ keeperUser: userId });
-        if (!account) return res.status(404).json({ msg: "Account not found" });
-
-        const factura = new Bill({
-            account: account._id,
-            user: userId,
-            numeroFactura: `F-${Date.now()}`,
-            total: buy.totalTransaccion,
-            buy: buy._id
-        });
-
-        const saved = await factura.save();
-
-        res.status(200).json({
-            msg: "Invoice generated successfully",
-            factura: saved
-        });
-
-    } catch (error) {
-        res.status(500).json({
-            msg: "Error generating invoice",
-            error: error.message
         });
     }
 };

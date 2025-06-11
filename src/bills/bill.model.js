@@ -11,11 +11,6 @@ const BillSchema = new Schema({
         ref: "User",
         required: true
     },
-    numeroFactura: {
-        type: String,
-        required: true,
-        unique: true
-    },
     total: {
         type: Number,
         required: true
