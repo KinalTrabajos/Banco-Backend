@@ -10,6 +10,12 @@ import { createAdmin } from '../src/auth/auth.controller.js';
 import { createRoles } from '../src/role/role.controller.js';
 import authRoutes from '../src/auth/auth.routes.js';
 import userRoutes from '../src/users/user.routes.js';
+import accountRoutes from "../src/account/account.routes.js";
+import favoriteRoutes from '../src/favorites/favorite.routes.js';
+import buyRoutes from "../src/buys/buy.routes.js";
+import billRoutes from "../src/bills/bill.routes.js";
+import transferRoutes from "../src/transfer/transfer.routes.js";
+import { rewardPointsService } from '../src/account/account.controller.js';
 
 const middlewares = (app) => {
     app.use(express.urlencoded({ extended: false }));
@@ -23,6 +29,11 @@ const middlewares = (app) => {
 const routes = (app) => {
     app.use('/BancoSystem/v1/auth', authRoutes);
     app.use('/BancoSystem/v1/users', userRoutes);
+    app.use('/BancoSystem/v1/account', accountRoutes); 
+    app.use('/BancoSystem/v1/favorites', favoriteRoutes);
+    app.use('/BancoSystem/v1/buy', buyRoutes); 
+    app.use('/BancoSystem/v1/bill', billRoutes); 
+    app.use('/BancoSystem/v1/transfer', transferRoutes);    
 }
 
 const conectarDB = async () => {
@@ -47,6 +58,7 @@ export const initServer = async () => {
         await createRoles();
         console.log(`Server running on port: ${port}`);
         await createAdmin();
+        setInterval(rewardPointsService, 5 * 60 * 1000); // Cada 5 minutos
     } catch (err) {
         console.log(`Server init failed: ${err}`);
     }

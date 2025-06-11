@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "4ec316c0-9689-4f15-a8fa-5d41ec74f64c",
+		"_postman_id": "2af10826-7845-44d7-8f23-b25f9edcfa78",
 		"name": "BancoSystem",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37413747"
+		"_exporter_id": "37413624"
 	},
 	"item": [
 		{
@@ -47,7 +47,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQwYjgzMTcyMjUxNTcyODg4ODRjNWUiLCJpYXQiOjE3NDkwNzE5NzQsImV4cCI6MTc0OTA3NTU3NH0.XtpQdpnBb4ip7kBlcBdG15SIIWr7tcBgXqaoX7bFTvU",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQyNTI1OWNlY2QzMTExNTU0ZGUwYzYiLCJpYXQiOjE3NDkyMTgwMTcsImV4cCI6MTc0OTIyMTYxN30.1fbagCyECSF8HgOC4cKR5qje7cJSxpvSRKndaBuxqLA",
 								"type": "text"
 							}
 						],
@@ -84,7 +84,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQwYjgzMTcyMjUxNTcyODg4ODRjNWUiLCJpYXQiOjE3NDkwNzE5NzQsImV4cCI6MTc0OTA3NTU3NH0.XtpQdpnBb4ip7kBlcBdG15SIIWr7tcBgXqaoX7bFTvU",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQyNTI1OWNlY2QzMTExNTU0ZGUwYzYiLCJpYXQiOjE3NDkyMTgwMTcsImV4cCI6MTc0OTIyMTYxN30.1fbagCyECSF8HgOC4cKR5qje7cJSxpvSRKndaBuxqLA",
 								"type": "text"
 							}
 						],
@@ -212,6 +212,452 @@
 								"v1",
 								"users",
 								"6840912e3af5b9fa8e51ae75"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "GetByIdUser",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/account/searchAccount?id=6842f30ccf01beca4e14db1d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"account",
+								"searchAccount"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "6842f30ccf01beca4e14db1d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllAccount",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQyNTI1OWNlY2QzMTExNTU0ZGUwYzYiLCJpYXQiOjE3NDkyMTgxMjQsImV4cCI6MTc0OTIyMTcyNH0.-NZcYXeV6Q5itNwq_U-lGGEhPyv8YcTR8y-YL4Iiq84",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/account/getAccount",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"account",
+								"getAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByNoAccount",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/account/searchAccount?noAccount=5401484935",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"account",
+								"searchAccount"
+							],
+							"query": [
+								{
+									"key": "noAccount",
+									"value": "5401484935"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Favorites",
+			"item": [
+				{
+					"name": "Agregar Favorito",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"accountId\": \"6842f2ebcf01beca4e14db0f\",\n  \"favoriteAccountId\": \"6842f30ccf01beca4e14db20\",\n  \"alias\": \"Cuenta Secundaria\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/favorites",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"favorites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Favoritos por Cuenta",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/favorites/6842f2ebcf01beca4e14db0f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"favorites",
+								"6842f2ebcf01beca4e14db0f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alternar Estado de Favorito",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"accountId\": \"6842f2ebcf01beca4e14db0f\",\n  \"favoriteAccountId\": \"6842f30ccf01beca4e14db20\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/favorites/toggle",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"favorites",
+								"toggle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Alias del Favorito",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"accountId\": \"6842f2ebcf01beca4e14db0f\",\n  \"favoriteAccountId\": \"6842f30ccf01beca4e14db20\",\n  \"alias\": \"Alias actualizado\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/favorites/alias",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"favorites",
+								"alias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Favorito",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"accountId\": \"6842f2ebcf01beca4e14db0f\",\n  \"favoriteAccountId\": \"6842f30ccf01beca4e14db20\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/favorites",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"favorites"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BuyAndBill",
+			"item": [
+				{
+					"name": "Comprar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{vault:json-web-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"keeperUser\":\"6842f2ebcf01beca4e14db0c\",\r\n    \"items\": [\r\n    {\r\n      \"name\": \"Laptop Dell\",\r\n      \"quantity\": 1,\r\n      \"price\": 1000\r\n    },\r\n    {\r\n      \"name\": \"Mouse Logitech\",\r\n      \"quantity\": 2,\r\n      \"price\": 25\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/buy/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"buy",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ComprasAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQyZjJlYmNmMDFiZWNhNGUxNGRiMGMiLCJpYXQiOjE3NDkzNTMyMDAsImV4cCI6MTc0OTM1NjgwMH0.TmwEs1ihRW_ZqY6okJMI7cay_TTkCRK9VRxwu388q0k",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/buy/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"buy",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BillById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{vault:json-web-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/bill/6842f2ebcf01beca4e14db0c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"bill",
+								"6842f2ebcf01beca4e14db0c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transfers",
+			"item": [
+				{
+					"name": "NewTransfer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQ3YWM5NTg0MjRkMmRkNGI3OWJlOTgiLCJpYXQiOjE3NDk1OTUzODEsImV4cCI6MTc0OTU5ODk4MX0.6VzKhP7q1eCj1pxRyOVL1cL38EC03-E-J5ZwH2gbqM8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"toAccount\": \"5401484935\",\r\n    \"amount\": 2000,\r\n    \"description\": \"Pago de vvxcxcxx\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/transfer/makeTransfer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"transfer",
+								"makeTransfer"
 							]
 						}
 					},
