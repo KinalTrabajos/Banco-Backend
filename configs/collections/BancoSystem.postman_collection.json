@@ -633,7 +633,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQ3YWM5NTg0MjRkMmRkNGI3OWJlOTgiLCJpYXQiOjE3NDk1OTUzODEsImV4cCI6MTc0OTU5ODk4MX0.6VzKhP7q1eCj1pxRyOVL1cL38EC03-E-J5ZwH2gbqM8",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQ3YWM5NTg0MjRkMmRkNGI3OWJlOTgiLCJpYXQiOjE3NDk2MTI2NzcsImV4cCI6MTc0OTYzMDY3N30.6wTTfka7HPvvRpbBWMt2bqFo6jwc8OgY_7V5drVQdE8",
 								"type": "text"
 							}
 						],
@@ -658,6 +658,44 @@
 								"v1",
 								"transfer",
 								"makeTransfer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditTransfer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQyZjMwY2NmMDFiZWNhNGUxNGRiMWQiLCJpYXQiOjE3NDk2MTM0MjUsImV4cCI6MTc0OTYzMTQyNX0.ej_II61e1di1l63vLBP8coiyXpyVo5LMQe5e3yeBPgk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"toAccount\": \"2406084182\",\r\n  \"amount\": 2000,\r\n  \"description\": \"Pago actualizado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/transfer/putTransfers/6848f88d787ad2b82d489394",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"transfer",
+								"putTransfers",
+								"6848f88d787ad2b82d489394"
 							]
 						}
 					},

@@ -1,4 +1,5 @@
 import Transfer from "./transfer.model.js";
+import Account from "../account/account.model.js";
 
 export const createTransfer = async (req, res) => {
     try {
@@ -34,5 +35,80 @@ export const createTransfer = async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ msg: 'Error processing transfer' });
+    }
+};
+
+export const updateTransfer = async (req, res) => {
+    try {
+        const { toAccount, amount, description } = req.body;
+        const userId = req.usuario._id;
+        const transfer = req.transfer;
+
+        const senderAccount = await Account.findOne({ keeperUser: userId });
+        if (!senderAccount) {
+            return res.status(404).json({ msg: 'Sender account not found' });
+        }
+
+        const oldReceiverAccount = await Account.findOne({ noAccount: transfer.toAccount });
+        if (!oldReceiverAccount) {
+            return res.status(404).json({ msg: 'Original recipient account not found' });
+        }
+
+        const originalCommission = (transfer.amount * 3.5) / 100;
+        senderAccount.balance += transfer.amount + originalCommission;
+        oldReceiverAccount.balance -= transfer.amount;
+
+        let newReceiverAccount = oldReceiverAccount;
+        if (toAccount && toAccount !== transfer.toAccount) {
+            newReceiverAccount = await Account.findOne({ noAccount: toAccount });
+            if (!newReceiverAccount) {
+                return res.status(404).json({ msg: 'New recipient account not found' });
+            }
+        }
+
+        const newAmount = amount ?? transfer.amount;
+        const newCommission = (newAmount * 3.5) / 100;
+        const totalToDeduct = newAmount + newCommission;
+
+        if (senderAccount.balance < totalToDeduct) {
+            return res.status(400).json({ msg: 'Insufficient balance for updated transfer' });
+        }
+
+        senderAccount.balance -= totalToDeduct;
+        newReceiverAccount.balance += newAmount;
+
+        await Promise.all([
+            senderAccount.save(),
+            oldReceiverAccount.save(),
+            newReceiverAccount !== oldReceiverAccount ? newReceiverAccount.save() : null
+        ]);
+
+        let updated = false;
+        if (toAccount && toAccount !== transfer.toAccount) {
+            transfer.toAccount = toAccount;
+            updated = true;
+        }
+        if (amount && amount !== transfer.amount) {
+            transfer.amount = amount;
+            updated = true;
+        }
+        if (description && description !== transfer.description) {
+            transfer.description = description;
+            updated = true;
+        }
+
+        if (updated) {
+            await transfer.save();
+        }
+
+        res.status(200).json({
+            msg: 'Transfer updated successfully',
+            transfer,
+            commissionCharged: newCommission.toFixed(2)
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: 'Error updating transfer' });
     }
 };

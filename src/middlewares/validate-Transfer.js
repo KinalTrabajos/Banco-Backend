@@ -72,3 +72,32 @@ export const validateTransferLimits = async (req, res, next) => {
         res.status(500).json({ msg: 'Error checking transfer limits' });
     }
 };
+
+export const validateTransferEditable = async (req, res, next) => {
+    const { id } = req.params;
+
+    try {
+        const transfer = await Transfer.findById(id);
+        if (!transfer) {
+            return res.status(404).json({ msg: 'Transfer not found' });
+        }
+
+        const userId = req.usuario._id;
+        if (!transfer.fromUser.equals(userId)) {
+            return res.status(403).json({ msg: 'Not authorized' });
+        }
+
+        const now = new Date();
+        const created = new Date(transfer.createdAt);
+        const diffMinutes = (now - created) / 1000 / 60;
+        if (diffMinutes > 5) {
+            return res.status(400).json({ msg: 'Transfer can no longer be edited after 5 minutes' });
+        }
+
+        req.transfer = transfer;
+        next();
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: 'Error validating transfer' });
+    }
+};
