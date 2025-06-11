@@ -6,12 +6,14 @@ export const getAllHistories = async (req, res) => {
         const user = req.usuario;
 
         if (user.role !== 'ADMIN_ROLE') {
-            return res.status(403).json({ msg: 'Access denied. Admins only.' });
+            return res.status(403).json({ 
+                msg: 'Access denied. Admins only' 
+            });
         }
 
         const histories = await History.find()
-            .populate('fromUser', 'name username email')
-            .populate('toUser', 'name username email')
+            .populate('fromUser', 'name noAccount ')
+            .populate('toUser', 'name noAccount ')
             .sort({ createdAt: -1 });
 
         res.json({ histories });
@@ -28,7 +30,7 @@ export const getHistoryFromUser = async (req, res) => {
         const userId = req.usuario._id;
 
         const histories = await History.find({ fromUser: userId })
-            .populate('toUser', 'name username email')
+            .populate('toUser', 'name noAccount')
             .sort({ createdAt: -1 });
 
         res.json({ histories });

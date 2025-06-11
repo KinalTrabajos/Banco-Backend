@@ -1,4 +1,5 @@
 import Transfer from "./transfer.model.js";
+import History from "../history/history.model.js"
 import Account from "../account/account.model.js";
 
 export const createTransfer = async (req, res) => {
@@ -26,6 +27,16 @@ export const createTransfer = async (req, res) => {
         });
 
         await newTransfer.save();
+
+        const historyEntry = new History({
+            fromUser,
+            toUser: receiverAccount.keeperUser,
+            amount,
+            description,
+            transfer: newTransfer._id
+        });
+
+        await historyEntry.save();
 
         res.status(201).json({
             msg: 'Transfer completed successfully',

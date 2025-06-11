@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "2af10826-7845-44d7-8f23-b25f9edcfa78",
+		"_postman_id": "ec460b4b-ccdb-4bac-9e87-f3dcc04e2241",
 		"name": "BancoSystem",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37413624"
+		"_exporter_id": "37557519",
+		"_collection_link": "https://www.postman.com/no-se6-1324/workspace/banco/collection/37557519-ec460b4b-ccdb-4bac-9e87-f3dcc04e2241?action=share&source=collection_link&creator=37557519"
 	},
 	"item": [
 		{
@@ -47,7 +48,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQyNTI1OWNlY2QzMTExNTU0ZGUwYzYiLCJpYXQiOjE3NDkyMTgwMTcsImV4cCI6MTc0OTIyMTYxN30.1fbagCyECSF8HgOC4cKR5qje7cJSxpvSRKndaBuxqLA",
+								"value": "{{vault:json-web-token}}",
 								"type": "text"
 							}
 						],
@@ -84,7 +85,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQyNTI1OWNlY2QzMTExNTU0ZGUwYzYiLCJpYXQiOjE3NDkyMTgwMTcsImV4cCI6MTc0OTIyMTYxN30.1fbagCyECSF8HgOC4cKR5qje7cJSxpvSRKndaBuxqLA",
+								"value": "{{vault:json-web-token}}",
 								"type": "text"
 							}
 						],
@@ -155,7 +156,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQwYjgzMTcyMjUxNTcyODg4ODRjNWUiLCJpYXQiOjE3NDkwNzI5NzksImV4cCI6MTc0OTA3NjU3OX0.DwsO_mWMOpi0m8L1C0HEgH406h6K93pjvZVJVb76E6Y",
+								"value": "{{vault:json-web-token}}",
 								"type": "text"
 							}
 						],
@@ -192,7 +193,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQwOTEyZTNhZjViOWZhOGU1MWFlNzUiLCJpYXQiOjE3NDkwNjE5NjcsImV4cCI6MTc0OTA2NTU2N30.t-Cy4C7cIeersFKgrE8XG38hqPXY2SAPHjZSYoI8G5M",
+								"value": "{{vault:json-web-token}}",
 								"type": "text"
 							}
 						],
@@ -264,7 +265,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQyNTI1OWNlY2QzMTExNTU0ZGUwYzYiLCJpYXQiOjE3NDkyMTgxMjQsImV4cCI6MTc0OTIyMTcyNH0.-NZcYXeV6Q5itNwq_U-lGGEhPyv8YcTR8y-YL4Iiq84",
+								"value": "{{vault:json-web-token}}",
 								"type": "text"
 							}
 						],
@@ -551,7 +552,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQyZjJlYmNmMDFiZWNhNGUxNGRiMGMiLCJpYXQiOjE3NDkzNTMyMDAsImV4cCI6MTc0OTM1NjgwMH0.TmwEs1ihRW_ZqY6okJMI7cay_TTkCRK9VRxwu388q0k",
+								"value": "{{vault:json-web-token}}",
 								"type": "text"
 							}
 						],
@@ -633,7 +634,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQ3YWM5NTg0MjRkMmRkNGI3OWJlOTgiLCJpYXQiOjE3NDk2MTI2NzcsImV4cCI6MTc0OTYzMDY3N30.6wTTfka7HPvvRpbBWMt2bqFo6jwc8OgY_7V5drVQdE8",
+								"value": "{{vault:json-web-token}}",
 								"type": "text"
 							}
 						],
@@ -670,7 +671,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQyZjMwY2NmMDFiZWNhNGUxNGRiMWQiLCJpYXQiOjE3NDk2MTM0MjUsImV4cCI6MTc0OTYzMTQyNX0.ej_II61e1di1l63vLBP8coiyXpyVo5LMQe5e3yeBPgk",
+								"value": "{{vault:json-web-token}}",
 								"type": "text"
 							}
 						],
@@ -696,6 +697,67 @@
 								"transfer",
 								"putTransfers",
 								"6848f88d787ad2b82d489394"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "History",
+			"item": [
+				{
+					"name": "AllHistory",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{vault:json-web-token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/history/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"history",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HistoryFromUser",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{vault:json-web-token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/history/6842f2ebcf01beca4e14db0c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"history",
+								"6842f2ebcf01beca4e14db0c"
 							]
 						}
 					},
