@@ -18,7 +18,6 @@ const UserSchema = Schema({
     },
     dpi: {
         type: String,
-        unique: true,
         minlength: [13, 'DPI must be 13 characters'],
         maxlength: [13, 'DPI must be 13 characters']
     },
