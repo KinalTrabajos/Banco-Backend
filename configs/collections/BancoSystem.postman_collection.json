@@ -17,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"1234567890\"\r\n}",
+							"raw": "{\r\n    \"username\": \"joaki\",\r\n    \"password\": \"0987654321\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -54,7 +54,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Peralta\",\r\n    \"username\": \"Anjoga\",\r\n    \"noAccount\": 1234567890,\r\n    \"dpi\": \"1234567890123\",\r\n    \"direction\": \"Lago de amatitlan\", \r\n    \"phone\": \"58694128\",\r\n    \"email\": \"pepa@gmail.com\",\r\n    \"password\": \"1234567809\",\r\n    \"nombreEmpresa\": \"Braulio.CO\",\r\n    \"income\": 101,\r\n    \"role\": \"USER_ROLE\",\r\n    \"typeAccount\": \"EMPRESARIAL\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Peralta\",\r\n    \"username\": \"Anjoga\",\r\n    \"direction\": \"Lago de amatitlan\", \r\n    \"phone\": \"58694128\",\r\n    \"email\": \"pepa@gmail.com\",\r\n    \"password\": \"1234567809\",\r\n    \"nombreEmpresa\": \"Braulio.CO\",\r\n    \"income\": 101,\r\n    \"role\": \"USER_ROLE\",\r\n    \"typeAccount\": \"EMPRESARIAL\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -127,13 +127,19 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQ0OGZhMDZjNGVkYTg5ZmJiMzkzYjEiLCJpYXQiOjE3NDk3MDI0NzksImV4cCI6MTc0OTcyMDQ3OX0.DDdaRUUNzUD97yzEqLVjuXl3DbE2CUndns7tZuc-JAA",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"admin@admin.com\",\r\n    \"password\": \"12345678\"\r\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/BancoSystem/v1/users/",
+							"raw": "http://localhost:8080/BancoSystem/v1/users/viewUsers",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -143,7 +149,57 @@
 								"BancoSystem",
 								"v1",
 								"users",
+								"viewUsers"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "viewUserById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQ0OGZhMDZjNGVkYTg5ZmJiMzkzYjEiLCJpYXQiOjE3NDk2OTk1ODUsImV4cCI6MTc0OTcxNzU4NX0.Khe3v0yxswSSoEScgvl685VeWttwpMvrw_Cnb-Hf--U",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/users/viewUserById/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"users",
+								"viewUserById",
 								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -162,7 +218,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"crosas\",\r\n    \"phone\" : \"99887744\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Joaquin\",\r\n    \"direction\" : \"en la casa de su papa y de su mama\",\r\n    \"work\" : \"Cerbias\",\r\n    \"income\" : 100\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -170,7 +226,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/BancoSystem/v1/users/6840b9d1b5d6122ce864d01b",
+							"raw": "http://localhost:8080/BancoSystem/v1/users/updateUser/684490c16c4eda89fbb393b9",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -180,16 +236,17 @@
 								"BancoSystem",
 								"v1",
 								"users",
-								"6840b9d1b5d6122ce864d01b"
+								"updateUser",
+								"684490c16c4eda89fbb393b9"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "deleteUsers",
+					"name": "UpdatePassword",
 					"request": {
-						"method": "DELETE",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "x-token",
@@ -199,10 +256,15 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"income\": 101\r\n}"
+							"raw": "{\r\n    \"passwordOld\" : \"1234567890\",\r\n    \"passwordNew\" : \"0987654321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/BancoSystem/v1/users/6840912e3af5b9fa8e51ae75",
+							"raw": "http://localhost:8080/BancoSystem/v1/users/updatePassword/684490c16c4eda89fbb393b9",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -212,7 +274,8 @@
 								"BancoSystem",
 								"v1",
 								"users",
-								"6840912e3af5b9fa8e51ae75"
+								"updatePassword",
+								"684490c16c4eda89fbb393b9"
 							]
 						}
 					},

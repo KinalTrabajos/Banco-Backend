@@ -1,30 +1,6 @@
 import User from '../users/user.model.js'
 import { verify } from 'argon2';
 
-export const validateDpiUniqueness = async (req, res, next) => {
-    try {
-        const { dpi } = req.body;
-
-        if (dpi) {
-            const exists = await User.findOne({ dpi });
-            if (exists) {
-                return res.status(400).json({
-                    success: false,
-                    msg: 'Ya existe un usuario registrado con ese DPI'
-                });
-            }
-        }
-
-        next();
-    } catch (error) {
-        return res.status(500).json({
-            success: false,
-            msg: 'Error validando el DPI',
-            error: error.message
-        });
-    }
-};
-
 export const validateProperty = async (req, res, next) => {
     const { id } = req.params;
     const userLogued = req.usuario.id;

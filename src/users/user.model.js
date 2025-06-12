@@ -9,17 +9,17 @@ const UserSchema = Schema({
     },
     username: {
         type: String,
-        required: [true, 'Username is required'],
-        unique: true
+        required: [true, 'Username is required']
     },
     noAccount: {
-        type: String,
-        unique: true
+        type: String
     },
     dpi: {
         type: String,
         minlength: [13, 'DPI must be 13 characters'],
-        maxlength: [13, 'DPI must be 13 characters']
+        maxlength: [13, 'DPI must be 13 characters'],
+        unique: true,
+        sparse: true
     },
     direction: {
         type: String,
@@ -30,13 +30,11 @@ const UserSchema = Schema({
         type: String,
         required: [true, 'Phone is required'],
         minlength: [8, 'Phone must be 8 digits'],
-        maxlength: [8, 'Phone must be 8 digits'],
-        unique: true
+        maxlength: [8, 'Phone must be 8 digits']
     },
     email: {
         type: String,
-        required: [true, 'Email is required'],
-        unique: true
+        required: [true, 'Email is required']
     },
     password: {
         type: String,
@@ -79,7 +77,6 @@ const UserSchema = Schema({
 
 UserSchema.pre('validate', function (next) {
     if (this.typeAccount === 'EMPRESARIAL') {
-        this.dpi = undefined;
         if (!this.nombreEmpresa) {
             this.invalidate('nombreEmpresa', 'Company name is required for EMPRESARIAL accounts');
         }
