@@ -22,7 +22,7 @@ const ProductSchema = Schema({
         required: true
     },
     state: {
-        type: String,
+        type: Boolean,
         default: true
     },
 },

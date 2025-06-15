@@ -16,7 +16,9 @@ import buyRoutes from "../src/buys/buy.routes.js";
 import billRoutes from "../src/bills/bill.routes.js";
 import transferRoutes from "../src/transfer/transfer.routes.js";
 import historyRoutes from "../src/history/history.routes.js";
+import productRoutes from "../src/products/product.routes.js"
 import { rewardPointsService } from '../src/account/account.controller.js';
+
 
 const middlewares = (app) => {
     app.use(express.urlencoded({ extended: false }));
@@ -35,7 +37,8 @@ const routes = (app) => {
     app.use('/BancoSystem/v1/buy', buyRoutes); 
     app.use('/BancoSystem/v1/bill', billRoutes); 
     app.use('/BancoSystem/v1/transfer', transferRoutes);
-    app.use('/BancoSystem/v1/history', historyRoutes);    
+    app.use('/BancoSystem/v1/history', historyRoutes); 
+    app.use('/BancoSystem/v1/products', productRoutes);   
 }
 
 const conectarDB = async () => {
