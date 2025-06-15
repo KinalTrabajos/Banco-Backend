@@ -581,7 +581,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"keeperUser\":\"6842f2ebcf01beca4e14db0c\",\r\n    \"items\": [\r\n    {\r\n      \"name\": \"Laptop Dell\",\r\n      \"quantity\": 1,\r\n      \"price\": 1000\r\n    },\r\n    {\r\n      \"name\": \"Mouse Logitech\",\r\n      \"quantity\": 2,\r\n      \"price\": 25\r\n    }\r\n  ]\r\n}",
+							"raw": "{\r\n    \"keeperUser\":\"6842f2ebcf01beca4e14db0c\",\r\n    \"items\": [\r\n    {\r\n      \"product\":\"684f08321a22fdec38b27b05\",\r\n      \"quantity\": 5\r\n    },\r\n    {\r\n      \"product\":\"684f08f71a22fdec38b27b0a\",\r\n      \"quantity\": 2\r\n    }\r\n  ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
