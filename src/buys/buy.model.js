@@ -8,9 +8,16 @@ const BuySchema = new Schema({
     },
     items: [
         {
-            name: { type: String },
-            quantity: { type: Number, min: 1 },
-            price: { type: Number, min: 0 },
+            product: {
+                type: Schema.Types.ObjectId,
+                ref: 'Product',
+                required: true
+            },
+            quantity: {
+                type: Number,
+                required: true,
+                min: 1
+            }
         },
     ],
     totalTransaccion: {

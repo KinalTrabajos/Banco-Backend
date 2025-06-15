@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "8b5109fb-2954-4074-89d0-1505b9d3e4fc",
+		"_postman_id": "f6678e4f-2bcf-4cf0-8580-ec4d1c8b7768",
 		"name": "BancoSystem",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37413968"
+		"_exporter_id": "44520325",
+		"_collection_link": "https://www.postman.com/ll9999-7980/workspace/banco/collection/44520325-f6678e4f-2bcf-4cf0-8580-ec4d1c8b7768?action=share&source=collection_link&creator=44520325"
 	},
 	"item": [
 		{
@@ -129,7 +130,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQ0OGZhMDZjNGVkYTg5ZmJiMzkzYjEiLCJpYXQiOjE3NDk5NTQwOTIsImV4cCI6MTc0OTk3MjA5Mn0.sXdBouRrI2adyCQLATLRbpKlB74UlfaquFMtCNh0Ayw",
+								"value": "{{vault:json-web-token}}",
 								"type": "text"
 							}
 						],
@@ -171,7 +172,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQ0OGZhMDZjNGVkYTg5ZmJiMzkzYjEiLCJpYXQiOjE3NDk2OTk1ODUsImV4cCI6MTc0OTcxNzU4NX0.Khe3v0yxswSSoEScgvl685VeWttwpMvrw_Cnb-Hf--U",
+								"value": "{{vault:json-web-token}}",
 								"type": "text"
 							}
 						],

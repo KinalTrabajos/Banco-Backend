@@ -4,50 +4,43 @@ export const validateBuy = async (req, res, next) => {
     try {
         const { keeperUser, items } = req.body;
 
-        if (!keeperUser || !items) {
+        if (!keeperUser || !Array.isArray(items) || items.length === 0) {
             return res.status(400).json({
-                error: "Faltan campos requeridos"
+                error: "You must provide a user and at least one product"
             });
+        }
+
+        for (const item of items) {
+            if (!item.product || item.quantity == null) {
+                return res.status(400).json({
+                    error: "Each item must have a product ID and a quantity"
+                });
+            }
+            if (item.quantity <= 0) {
+                return res.status(400).json({
+                    error: "The amount must be greater than 0"
+                });
+            }
         }
 
         const cuenta = await Account.findOne({ keeperUser });
         if (!cuenta) {
             return res.status(404).json({
-                error: "Cuenta no encontrada para el usuario"
+                success: false,
+                msg: "Account not found for the user",
+                error: error.message
             });
         }
 
         req.account = cuenta;
-
-        if (!Array.isArray(items) || items.length === 0) {
-            return res.status(400).json({
-                error: "Debe incluir al menos un producto"
-            });
-        }
-
-        for (const item of items) {
-            if (!item.name || item.quantity == null || item.price == null) {
-                return res.status(400).json({
-                    error: "Cada producto debe tener nombre, cantidad y precio"
-                });
-            }
-            if (item.quantity <= 0 || item.price < 0) {
-                return res.status(400).json({
-                    error: "Cantidad debe ser mayor que 0 y precio mayor o igual a 0"
-                });
-            }
-        }
-
-        const total = items.reduce((acc, item) => acc + item.quantity * item.price, 0);
-        req.body.totalTransaccion = total;
-
         next();
 
     } catch (error) {
-        console.error("Error de validación:", error);
+        console.error("Validation error:", error);
         res.status(500).json({
-            error: "Error interno en la validación",
-            detail: error.message
+            success: false,
+            msg: "Internal error",
+            error: error.message
         });
     }
 };
