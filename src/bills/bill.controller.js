@@ -12,7 +12,8 @@ export const getBills = async (req, res) => {
 
         const bills = await Bill.find()
             .populate("user", "name email")
-            .populate("account", "noAccount balance");
+            .populate("account", "noAccount balance")
+            .populate("products", "name price description");
 
         res.status(200).json({ bills });
 
@@ -39,7 +40,8 @@ export const getBillByUser = async (req, res) => {
 
         const bills = await Bill.find({ user: id })
             .populate("user", "name email")
-            .populate("account", "noAccount balance");
+            .populate("account", "noAccount balance")
+            .populate("products", "name price description");
 
         if (bills.length === 0) {
             return res.status(404).json({

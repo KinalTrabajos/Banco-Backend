@@ -49,6 +49,7 @@ export const createBuy = async (req, res) => {
         const newBill = new Bill({
             account: cuenta._id,
             user: keeperUser,
+            products: processedItems.map(item => item.product),
             total,
         });
 
