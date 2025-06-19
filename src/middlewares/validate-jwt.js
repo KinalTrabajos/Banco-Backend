@@ -7,7 +7,7 @@ export const validatejwt = async (req, res, next) => {
 
     if (!token) {
         return res.status(401).json({
-            msg: "No token in the request",
+            msg: "No token in the request sasdasd",
         });
     }
 

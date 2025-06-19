@@ -24,11 +24,11 @@ export const validateBuy = async (req, res, next) => {
         }
 
         const cuenta = await Account.findOne({ keeperUser });
+        console.log(cuenta)
         if (!cuenta) {
             return res.status(404).json({
                 success: false,
                 msg: "Account not found for the user",
-                error: error.message
             });
         }
 
@@ -39,8 +39,9 @@ export const validateBuy = async (req, res, next) => {
         console.error("Validation error:", error);
         res.status(500).json({
             success: false,
-            msg: "Internal error",
-            error: error.message
+            msg: "Internal server error",
+            error: error.message,
+            stack: error.stack
         });
     }
 };
