@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "f6678e4f-2bcf-4cf0-8580-ec4d1c8b7768",
+		"_postman_id": "35afe83b-5682-447b-88b9-1680f7bbcc6b",
 		"name": "BancoSystem",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "44520325",
-		"_collection_link": "https://www.postman.com/ll9999-7980/workspace/banco/collection/44520325-f6678e4f-2bcf-4cf0-8580-ec4d1c8b7768?action=share&source=collection_link&creator=44520325"
+		"_exporter_id": "37413624"
 	},
 	"item": [
 		{
@@ -697,7 +696,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "{{vault:json-web-token}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQ3YWM5NTg0MjRkMmRkNGI3OWJlOTgiLCJpYXQiOjE3NTA2MTI0NDcsImV4cCI6MTc1MDYzMDQ0N30.GIbiK8xiHJjk55TLSJWW9e0Wkkx_CIfu8UXy0UwDVKU",
 								"type": "text"
 							}
 						],
@@ -760,6 +759,35 @@
 								"transfer",
 								"putTransfers",
 								"6848f88d787ad2b82d489394"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CancelTransfer",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQ3YWM5NTg0MjRkMmRkNGI3OWJlOTgiLCJpYXQiOjE3NTA2MTI0NDcsImV4cCI6MTc1MDYzMDQ0N30.GIbiK8xiHJjk55TLSJWW9e0Wkkx_CIfu8UXy0UwDVKU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/transfer/cancelTransfer/68583be571d811df9194bd76",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"transfer",
+								"cancelTransfer",
+								"68583be571d811df9194bd76"
 							]
 						}
 					},

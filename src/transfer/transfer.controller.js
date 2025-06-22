@@ -123,3 +123,36 @@ export const updateTransfer = async (req, res) => {
         res.status(500).json({ msg: 'Error updating transfer' });
     }
 };
+
+export const cancelTransfer = async (req, res) => {
+    try {
+        const transfer = req.transfer;
+        const userId = req.usuario._id;
+
+        const senderAccount = await Account.findOne({ keeperUser: userId });
+        const receiverAccount = await Account.findOne({ noAccount: transfer.toAccount });
+
+        if (!senderAccount || !receiverAccount) {
+            return res.status(404).json({ msg: 'Sender or receiver account not found' });
+        }
+
+        const commissionAmount = (transfer.amount * 3.5) / 100;
+        const totalRefund = transfer.amount + commissionAmount;
+
+        senderAccount.balance += totalRefund;
+        receiverAccount.balance -= transfer.amount;
+
+        await Promise.all([
+            senderAccount.save(),
+            receiverAccount.save(),
+            Transfer.findByIdAndDelete(transfer._id),
+            History.deleteOne({ transfer: transfer._id })
+        ]);
+
+        res.status(200).json({ msg: 'Transfer successfully cancelled and funds reverted' });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: 'Error cancelling transfer' });
+    }
+};

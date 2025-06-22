@@ -101,3 +101,34 @@ export const validateTransferEditable = async (req, res, next) => {
         res.status(500).json({ msg: 'Error validating transfer' });
     }
 };
+
+export const validateTransferCancelable = async (req, res, next) => {
+    const { id } = req.params;
+
+    try {
+        const transfer = await Transfer.findById(id);
+        if (!transfer) {
+            return res.status(404).json({ msg: 'Transfer not found' });
+        }
+
+        const userId = req.usuario._id;
+
+        if (!transfer.fromUser.equals(userId)) {
+            return res.status(403).json({ msg: 'You are not authorized to cancel this transfer' });
+        }
+
+        const now = new Date();
+        const createdAt = new Date(transfer.createdAt);
+        const diffMinutes = (now - createdAt) / 1000 / 60;
+
+        if (diffMinutes > 3) {
+            return res.status(400).json({ msg: 'The transfer can no longer be cancelled (time limit exceeded)' });
+        }
+
+        req.transfer = transfer;
+        next();
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: 'Error validating transfer cancellation' });
+    }
+};

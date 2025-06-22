@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { createTransfer, updateTransfer} from './transfer.controller.js';
+import { cancelTransfer, createTransfer, updateTransfer } from './transfer.controller.js';
 import { validatejwt } from "../middlewares/validate-JWT.js";
-import { validateTransferBase, validateTransferLimits, validateTransferEditable} from '../middlewares/validate-Transfer.js';
+import { validateTransferBase, validateTransferLimits, validateTransferEditable, validateTransferCancelable } from '../middlewares/validate-Transfer.js';
 
 const router = Router();
 
@@ -9,8 +9,8 @@ router.post(
     '/makeTransfer',
     [
         validatejwt,
-        validateTransferLimits, 
-        validateTransferBase    
+        validateTransferLimits,
+        validateTransferBase
     ],
     createTransfer
 );
@@ -23,6 +23,15 @@ router.put(
         validateTransferLimits
     ],
     updateTransfer
+)
+
+router.delete(
+    '/cancelTransfer/:id',
+    [
+        validatejwt,
+        validateTransferCancelable
+    ],
+    cancelTransfer
 )
 
 export default router;
