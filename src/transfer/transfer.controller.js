@@ -126,6 +126,15 @@ export const updateTransfer = async (req, res) => {
 
 export const cancelTransfer = async (req, res) => {
     try {
+        const { confirm } = req.body;
+        
+        if (!confirm) {
+            return res.status(400).json({
+                success: false,
+                msg: "Confirmación requerida para cancelar la transferencia"
+            });
+        }
+
         const transfer = req.transfer;
         const userId = req.usuario._id;
 

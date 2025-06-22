@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "35afe83b-5682-447b-88b9-1680f7bbcc6b",
+		"_postman_id": "9ee86b94-7087-4692-bb94-abfd3e2c666d",
 		"name": "BancoSystem",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "37413624"
@@ -775,8 +775,17 @@
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"confirm\" : true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8080/BancoSystem/v1/transfer/cancelTransfer/68583be571d811df9194bd76",
+							"raw": "http://localhost:8080/BancoSystem/v1/transfer/cancelTransfer/68587724b385b87f8d8c8f41",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -787,7 +796,7 @@
 								"v1",
 								"transfer",
 								"cancelTransfer",
-								"68583be571d811df9194bd76"
+								"68587724b385b87f8d8c8f41"
 							]
 						}
 					},
@@ -1026,7 +1035,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/BancoSystem/v1/products/deleteProduct/684e2da53dd4483e4543f9c6",
+							"raw": "http://localhost:8080/BancoSystem/v1/products/deleteProduct/68587724b385b87f8d8c8f41",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1037,7 +1046,7 @@
 								"v1",
 								"products",
 								"deleteProduct",
-								"684e2da53dd4483e4543f9c6"
+								"68587724b385b87f8d8c8f41"
 							]
 						}
 					},
