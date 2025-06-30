@@ -17,7 +17,7 @@ router.post(
 );
 
 router.get("/getProducts", getProducts);
-router.get("/getProductsByUserId", getProductsByUserId);
+router.post("/getProductsByUserId", getProductsByUserId);  //Cambio de GET a POST
 
 router.put(
     "/updateProduct/:id",
