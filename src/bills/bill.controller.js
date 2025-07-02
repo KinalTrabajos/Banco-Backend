@@ -30,9 +30,8 @@ export const getBillByUser = async (req, res) => {
     try {
         const { id } = req.params;
         const requesterId = req.usuario._id;
-        const requesterRole = req.usuario.role;
 
-        if (requesterId.toString() !== id && requesterRole !== "ADMIN_ROLE") {
+        if (requesterId.toString() !== id) {
             return res.status(403).json({
                 msg: "You do not have permission to view these invoices"
             });
