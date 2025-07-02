@@ -1,42 +1,32 @@
 import { response, request } from 'express';
 import Favorite from './favorite.model.js';
-import Account from '../account/account.model.js'; // Asegúrate de que esta ruta esté correcta
+import Account from '../account/account.model.js'; 
 
 export const addFavorite = async (req = request, res = response) => {
+    
+    const userId = req.usuario._id;
+    const {alias, ...data} = req.body;
+    const acount = await Account.findById(data.favoriteAccount);
     try {
-        const { accountId, favoriteAccountId, alias } = req.body;
-
-        if (accountId === favoriteAccountId) {
+        if (!userId) {
             return res.status(400).json({
                 success: false,
-                msg: "An account cannot favorite itself."
+                msg: "El ID del usuario es requerido"
             });
         }
+        const favorites = new Favorite({
+            user : userId,
+            favoriteAccount: acount._id,
+            alias
+        })
 
-        const [accountExists, favoriteAccountExists] = await Promise.all([
-            Account.findById(accountId),
-            Account.findById(favoriteAccountId)
-        ]);
-
-        if (!accountExists || !favoriteAccountExists) {
-            return res.status(404).json({
-                success: false,
-                msg: "One or both accounts do not exist."
-            });
-        }
-
-        const favorite = await Favorite.findOneAndUpdate(
-            { account: accountId, favoriteAccount: favoriteAccountId },
-            { isFavorite: true, alias },
-            { upsert: true, new: true, setDefaultsOnInsert: true }
-        );
+        await favorites.save();
 
         res.status(200).json({
-            success: true,
-            msg: "Favorite added/updated successfully.",
-            favorite
-        });
-
+            success: true, 
+            msg: 'Cuenta agregada a favoritos con exito',
+            favorites
+        })
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -47,119 +37,110 @@ export const addFavorite = async (req = request, res = response) => {
 };
 
 export const getFavoritesByAccount = async (req = request, res = response) => {
+    const userId = req.usuario._id;
     try {
-        const { accountId } = req.params;
+        const { searchByAlias } = req.query;
+        const query = { isFavorite: true, user: userId };
 
-        const favorites = await Favorite.find({ account: accountId, isFavorite: true })
-            .populate('favoriteAccount', 'noAccount typeAccount balance points');
+        if (searchByAlias) {
+            query.alias = { $regex: new RegExp(searchByAlias, 'i') };
+        }
+
+        const favorites = await Favorite.find(query)
+            .populate('favoriteAccount', 'noAccount typeAccount countTransactions')
+            .populate('user', 'username noAccount');
+
+        const topFavorites = favorites
+            .filter(fav => fav.favoriteAccount && typeof fav.favoriteAccount.countTransactions === 'number')
+            .sort((a, b) => b.favoriteAccount.countTransactions - a.favoriteAccount.countTransactions)
+            .slice(0, 3);
 
         res.status(200).json({
             success: true,
+            total: topFavorites.length,
+            favorites: topFavorites
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            msg: "Error fetching top favorites",
+            error: error.message
+        });
+    }
+};
+
+export const getAllFavorites = async (req = request, res = response) => {
+    const { limite = 10, desde = 0 } = req.query;
+    const query = { isFavorite: true };
+
+    try {
+        const favorites = await Favorite.find(query)
+            .populate('favoriteAccount', 'noAccount typeAccount')
+            .populate('user', 'username noAccount')
+            .skip(Number(desde))
+            .limit(Number(limite)); 
+
+        const total = await Favorite.countDocuments(query); 
+
+        res.status(200).json({
+            success: true,
+            total,
             favorites
         });
 
     } catch (error) {
-        res.status(500).json({
+        res.status(400).json({
             success: false,
-            msg: "Error fetching favorites",
+            msg: "Error al obtener favoritos",
             error: error.message
         });
     }
 };
 
-export const toggleFavoriteStatus = async (req = request, res = response) => {
+export const editFavorite = async (req = request, res = response) => { 
+    const { id } = req.params;
+    const { alias } = req.body;     
     try {
-        const { accountId, favoriteAccountId } = req.body;
-
-        const favorite = await Favorite.findOne({ account: accountId, favoriteAccount: favoriteAccountId });
-
-        if (!favorite) {
-            return res.status(404).json({
-                success: false,
-                msg: "Favorite relationship not found"
-            });
-        }
-
-        favorite.isFavorite = !favorite.isFavorite;
-        await favorite.save();
+        const favorite = await Favorite.findByIdAndUpdate(id, { alias }, { new: true });    
 
         res.status(200).json({
             success: true,
-            msg: "Favorite status updated",
+            msg: "Favorito actualizado correctamente",
             favorite
         });
-
     } catch (error) {
-        res.status(500).json({
+        res.status(400).json({
             success: false,
-            msg: "Error updating favorite",
-            error: error.message
-        });
+            msg: "Error al editar favorito",
+            error: error.message,
+        })
     }
 };
 
 export const deleteFavorite = async (req = request, res = response) => {
+    const { id } = req.params;
+    const { confirm } = req.body;
     try {
-        const { accountId, favoriteAccountId } = req.body;
-
-        const deleted = await Favorite.findOneAndDelete({ account: accountId, favoriteAccount: favoriteAccountId });
-
-        if (!deleted) {
-            return res.status(404).json({
+        if (!confirm){
+            return res.status(400).json({
                 success: false,
-                msg: "Favorite not found"
+                msg: "Confirmación requerida"
             });
         }
+
+        const deletedFavorite = await Favorite.findByIdAndUpdate(id , { isFavorite: false }, { new: true });
 
         res.status(200).json({
             success: true,
             msg: "Favorite removed successfully",
-            deleted
+            deletedFavorite
         });
-
     } catch (error) {
         res.status(500).json({
             success: false,
             msg: "Error deleting favorite",
             error: error.message
-        });
-    }
-};
-
-export const updateFavoriteAlias = async (req = request, res = response) => {
-    try {
-        const { accountId, favoriteAccountId, alias } = req.body;
-
-        if (!alias || typeof alias !== 'string') {
-            return res.status(400).json({
-                success: false,
-                msg: "Alias is required and must be a string."
-            });
-        }
-
-        const favorite = await Favorite.findOne({ account: accountId, favoriteAccount: favoriteAccountId });
-
-        if (!favorite) {
-            return res.status(404).json({
-                success: false,
-                msg: "Favorite relationship not found"
-            });
-        }
-
-        favorite.alias = alias.trim();
-        await favorite.save();
-
-        res.status(200).json({
-            success: true,
-            msg: "Alias updated successfully",
-            favorite
-        });
-
-    } catch (error) {
-        res.status(500).json({
-            success: false,
-            msg: "Error updating alias",
-            error: error.message
-        });
+        });         
     }
 };

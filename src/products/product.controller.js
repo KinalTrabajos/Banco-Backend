@@ -2,10 +2,41 @@
 import { response } from "express";
 import Product from "./product.model.js";
 import User from "../users/user.model.js";
+
 export const addPorducts = async (req, res = response) => {
     const { nameProduct, price, description, ...data } = req.body;
+
+    if (!data.keeperUser) {
+        return res.status(400).json({
+            success: false,
+            msg: "El ID del usuario es requerido"
+        });
+    }
+
     const user = await User.findById(data.keeperUser);
+
     try {
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                msg: "Usuario no encontrado"
+            });
+        }
+
+        if (user.typeAccount !== 'EMPRESARIAL') {
+            return res.status(403).json({
+                success: false,
+                msg: "Solo los usuarios con cuenta EMPRESARIAL pueden agregar productos"
+            });
+        }
+
+        if (price <= 0) {
+            return res.status(400).json({
+                success: false,
+                msg: "El precio del producto debe ser mayor a 0"
+            });
+        }
+
         const product = await Product.create({
             nameProduct,
             price,
@@ -76,7 +107,21 @@ export const getProductsByUserId = async (req, res = response) => {
 export const updateProduct = async (req, res = response) => {
     const { id } = req.params;
     const { nameProduct, price, description, keeperUser } = req.body;
+    if (!data.keeperUser) {
+        return res.status(400).json({
+            success: false,
+            msg: "El ID del usuario es requerido"
+        });
+    }
+
     try {
+
+        if (price <= 0) {
+            return res.status(400).json({
+                success: false,
+                msg: "El precio del producto debe ser mayor a 0"
+            });
+        }
         const product = await Product.findByIdAndUpdate(id, { nameProduct, price, description, keeperUser }, { new: true });
         res.status(200).json({
             success: true,
@@ -98,7 +143,6 @@ export const deleteProduct = async (req, res = response) => {
     const { confirm } = req.body;
 
     try {
-
         if (!confirm){
             return res.status(400).json({
                 success: false,

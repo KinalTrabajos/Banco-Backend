@@ -2,49 +2,43 @@ import { Router } from "express";
 import {
     addFavorite,
     getFavoritesByAccount,
-    toggleFavoriteStatus,
-    deleteFavorite,
-    updateFavoriteAlias
+    getAllFavorites,
+    editFavorite,
+    deleteFavorite
 } from "../favorites/favorite.controller.js";
 import { validarCampos } from "../middlewares/validate-campos.js";
 import { validatejwt } from "../middlewares/validate-jwt.js";
-import {
-    validateAddFavorite,
-    validateGetFavorites,
-    validateToggleFavorite,
-    validateDeleteFavorite,
-    validateUpdateAlias
-} from "../middlewares/validate-favorites.js";
+import { validateAdmin } from "../middlewares/validator-users.js"; 
 
 const router = Router();
 
 router.post(
-    "/",
-    [validatejwt, ...validateAddFavorite, validarCampos],
+    "/addFavorite",
+    [validatejwt, validarCampos],
     addFavorite
 );
 
 router.get(
-    "/:accountId",
-    [validatejwt, ...validateGetFavorites, validarCampos],
+    "/viewFavorites",
+    [validatejwt, validarCampos],
     getFavoritesByAccount
 );
 
-router.patch(
-    "/toggle",
-    [validatejwt, ...validateToggleFavorite, validarCampos],
-    toggleFavoriteStatus
+router.get(
+    "/viewAllFavorites",
+    [validatejwt, validateAdmin, validarCampos],    
+    getAllFavorites
 );
 
-router.patch(
-    "/alias",
-    [validatejwt, ...validateUpdateAlias, validarCampos],
-    updateFavoriteAlias
+router.put(
+    "/editFavorite/:id",
+    [validatejwt, validarCampos],    
+    editFavorite
 );
 
 router.delete(
-    "/",
-    [validatejwt, ...validateDeleteFavorite, validarCampos],
+    "/deleteFavorite/:id",
+    [validatejwt, validarCampos],
     deleteFavorite
 );
 

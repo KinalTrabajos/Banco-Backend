@@ -10,7 +10,6 @@ router.get(
     "/:id",
     [
         validatejwt,
-        check("id", "Not a valid ID").isMongoId(),
         validarCampos
     ],
     getHistoryFromUser

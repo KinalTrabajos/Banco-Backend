@@ -28,6 +28,12 @@ export const createTransfer = async (req, res) => {
 
         await newTransfer.save();
 
+        await Account.findOneAndUpdate(
+            { noAccount: toAccount },
+            { $inc: { countTransactions: 1 } },
+            { new: true }
+        );
+
         const historyEntry = new History({
             fromUser,
             toUser: receiverAccount.keeperUser,

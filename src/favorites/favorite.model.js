@@ -1,9 +1,9 @@
 import { Schema, model } from 'mongoose';
 
 const FavoriteSchema = new Schema({
-    account: {
+    user: {
         type: Schema.Types.ObjectId,
-        ref: 'Account',
+        ref: 'User',
         required: true
     },
     favoriteAccount: {
@@ -19,11 +19,11 @@ const FavoriteSchema = new Schema({
         type: Boolean,
         default: true
     }
-}, {
+}, 
+{
     timestamps: true,
     versionKey: false
 });
 
-FavoriteSchema.index({ account: 1, favoriteAccount: 1 }, { unique: true });
 
 export default model('Favorite', FavoriteSchema);

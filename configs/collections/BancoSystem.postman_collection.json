@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "35afe83b-5682-447b-88b9-1680f7bbcc6b",
+		"_postman_id": "8b5109fb-2954-4074-89d0-1505b9d3e4fc",
 		"name": "BancoSystem",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37413624"
+		"_exporter_id": "37413968"
 	},
 	"item": [
 		{
@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"1234567890\"\r\n}",
+							"raw": "{\r\n    \"username\": \"kreyes\",\r\n    \"password\": \"1234567890\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -129,7 +129,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "{{vault:json-web-token}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQ0OGZhMDZjNGVkYTg5ZmJiMzkzYjEiLCJpYXQiOjE3NDk5NTQwOTIsImV4cCI6MTc0OTk3MjA5Mn0.sXdBouRrI2adyCQLATLRbpKlB74UlfaquFMtCNh0Ayw",
 								"type": "text"
 							}
 						],
@@ -171,7 +171,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "{{vault:json-web-token}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQ0OGZhMDZjNGVkYTg5ZmJiMzkzYjEiLCJpYXQiOjE3NDk2OTk1ODUsImV4cCI6MTc0OTcxNzU4NX0.Khe3v0yxswSSoEScgvl685VeWttwpMvrw_Cnb-Hf--U",
 								"type": "text"
 							}
 						],
@@ -395,13 +395,13 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "{{token}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODRhNGNlMjE4MzJjMzFmNWM5OWMzMjAiLCJpYXQiOjE3NTE0MjgyNzMsImV4cCI6MTc1MTQ0NjI3M30.7hZnI19-XVFff6_tBIPjPYlqyMnHWe8YcfUOYKtWBX8",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"accountId\": \"6842f2ebcf01beca4e14db0f\",\n  \"favoriteAccountId\": \"6842f30ccf01beca4e14db20\",\n  \"alias\": \"Cuenta Secundaria\"\n}",
+							"raw": "{\n  \"favoriteAccount\": \"684a4fad939735810307586c\",\n  \"alias\": \"4\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -409,7 +409,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/BancoSystem/v1/favorites",
+							"raw": "http://localhost:8080/BancoSystem/v1/favorites/addFavorite",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -418,7 +418,8 @@
 							"path": [
 								"BancoSystem",
 								"v1",
-								"favorites"
+								"favorites",
+								"addFavorite"
 							]
 						}
 					},
@@ -431,12 +432,12 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "{{token}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODRhNGNlMjE4MzJjMzFmNWM5OWMzMjAiLCJpYXQiOjE3NTE0MjgyNzMsImV4cCI6MTc1MTQ0NjI3M30.7hZnI19-XVFff6_tBIPjPYlqyMnHWe8YcfUOYKtWBX8",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/BancoSystem/v1/favorites/6842f2ebcf01beca4e14db0f",
+							"raw": "http://localhost:8080/BancoSystem/v1/favorites/viewFavorites?=",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -446,26 +447,67 @@
 								"BancoSystem",
 								"v1",
 								"favorites",
-								"6842f2ebcf01beca4e14db0f"
+								"viewFavorites"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": ""
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Alternar Estado de Favorito",
+					"name": "ver todos los favoritos",
 					"request": {
-						"method": "PATCH",
+						"method": "GET",
 						"header": [
 							{
 								"key": "x-token",
-								"value": "{{token}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQ0OGZhMDZjNGVkYTg5ZmJiMzkzYjEiLCJpYXQiOjE3NTE0MjM1NDAsImV4cCI6MTc1MTQ0MTU0MH0.OSbEmo0Ze7Seu42vEN3MNOhV6ddXaUnTIRgNSMLOVdE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/favorites/viewAllFavorites",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"favorites",
+								"viewAllFavorites"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Favorito",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODRhNGNlMjE4MzJjMzFmNWM5OWMzMjAiLCJpYXQiOjE3NTE0MjM5OTcsImV4cCI6MTc1MTQ0MTk5N30.evQT310Yqmdhf_Y94ma0UcQVqzY1KWVdUncPvvi6iE8",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"accountId\": \"6842f2ebcf01beca4e14db0f\",\n  \"favoriteAccountId\": \"6842f30ccf01beca4e14db20\"\n}",
+							"raw": "{\r\n    \"alias\": \"Consomes Magui\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -473,7 +515,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/BancoSystem/v1/favorites/toggle",
+							"raw": "http://localhost:8080/BancoSystem/v1/favorites/editFavorite/6864982c0b13ac44fdd8f6a6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -483,44 +525,8 @@
 								"BancoSystem",
 								"v1",
 								"favorites",
-								"toggle"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Actualizar Alias del Favorito",
-					"request": {
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "x-token",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"accountId\": \"6842f2ebcf01beca4e14db0f\",\n  \"favoriteAccountId\": \"6842f30ccf01beca4e14db20\",\n  \"alias\": \"Alias actualizado\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/BancoSystem/v1/favorites/alias",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"BancoSystem",
-								"v1",
-								"favorites",
-								"alias"
+								"editFavorite",
+								"6864982c0b13ac44fdd8f6a6"
 							]
 						}
 					},
@@ -533,13 +539,13 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "{{token}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODRhNGNlMjE4MzJjMzFmNWM5OWMzMjAiLCJpYXQiOjE3NTE0MjM5OTcsImV4cCI6MTc1MTQ0MTk5N30.evQT310Yqmdhf_Y94ma0UcQVqzY1KWVdUncPvvi6iE8",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"accountId\": \"6842f2ebcf01beca4e14db0f\",\n  \"favoriteAccountId\": \"6842f30ccf01beca4e14db20\"\n}",
+							"raw": "{\n    \"confirm\": true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -547,7 +553,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/BancoSystem/v1/favorites",
+							"raw": "http://localhost:8080/BancoSystem/v1/favorites/deleteFavorite/6864982c0b13ac44fdd8f6a6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -556,7 +562,16 @@
 							"path": [
 								"BancoSystem",
 								"v1",
-								"favorites"
+								"favorites",
+								"deleteFavorite",
+								"6864982c0b13ac44fdd8f6a6"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -580,7 +595,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"keeperUser\":\"6842f2ebcf01beca4e14db0c\",\r\n    \"items\": [\r\n    {\r\n      \"product\":\"684f08321a22fdec38b27b05\",\r\n      \"quantity\": 5\r\n    },\r\n    {\r\n      \"product\":\"684f08f71a22fdec38b27b0a\",\r\n      \"quantity\": 2\r\n    }\r\n  ]\r\n}",
+							"raw": "{\r\n    \"keeperUser\":\"6842f2ebcf01beca4e14db0c\",\r\n    \"items\": [\r\n    {\r\n      \"name\": \"Laptop Dell\",\r\n      \"quantity\": 1,\r\n      \"price\": 1000\r\n    },\r\n    {\r\n      \"name\": \"Mouse Logitech\",\r\n      \"quantity\": 2,\r\n      \"price\": 25\r\n    }\r\n  ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -696,13 +711,13 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQ3YWM5NTg0MjRkMmRkNGI3OWJlOTgiLCJpYXQiOjE3NTA2MTI0NDcsImV4cCI6MTc1MDYzMDQ0N30.GIbiK8xiHJjk55TLSJWW9e0Wkkx_CIfu8UXy0UwDVKU",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODRhNGNlMjE4MzJjMzFmNWM5OWMzMjAiLCJpYXQiOjE3NTE0MjgyNzMsImV4cCI6MTc1MTQ0NjI3M30.7hZnI19-XVFff6_tBIPjPYlqyMnHWe8YcfUOYKtWBX8",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"toAccount\": \"5401484935\",\r\n    \"amount\": 2000,\r\n    \"description\": \"Pago de vvxcxcxx\"\r\n}",
+							"raw": "{\r\n    \"toAccount\": \"9783748804\",\r\n    \"amount\": 100,\r\n    \"description\": \"Pago de vvxcxcxx\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -759,35 +774,6 @@
 								"transfer",
 								"putTransfers",
 								"6848f88d787ad2b82d489394"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "CancelTransfer",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQ3YWM5NTg0MjRkMmRkNGI3OWJlOTgiLCJpYXQiOjE3NTA2MTI0NDcsImV4cCI6MTc1MDYzMDQ0N30.GIbiK8xiHJjk55TLSJWW9e0Wkkx_CIfu8UXy0UwDVKU",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/BancoSystem/v1/transfer/cancelTransfer/68583be571d811df9194bd76",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"BancoSystem",
-								"v1",
-								"transfer",
-								"cancelTransfer",
-								"68583be571d811df9194bd76"
 							]
 						}
 					},
