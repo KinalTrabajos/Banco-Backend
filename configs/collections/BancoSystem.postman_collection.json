@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "8b5109fb-2954-4074-89d0-1505b9d3e4fc",
+		"_postman_id": "6435931e-fdb5-4252-81fa-f9db1366ab22",
 		"name": "BancoSystem",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37413968"
+		"_exporter_id": "37413624"
 	},
 	"item": [
 		{
@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"kreyes\",\r\n    \"password\": \"1234567890\"\r\n}",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"1234567890\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1024,6 +1024,185 @@
 								"products",
 								"deleteProduct",
 								"684e2da53dd4483e4543f9c6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AccountRequest",
+			"item": [
+				{
+					"name": "NewAccountRequestNormal",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Joaquin\",\r\n    \"username\": \"joaki\",\r\n    \"dpi\": \"1234567890364\",\r\n    \"direction\": \"En su casa\", \r\n    \"phone\": \"00112233\",\r\n    \"email\": \"joaki@gmail.com\",\r\n    \"password\": \"0987654321\",\r\n    \"work\": \"kinal\",\r\n    \"income\": 101,\r\n    \"role\": \"USER_ROLE\",\r\n    \"typeAccount\": \"NORMAL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/accountRequest/account-request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"accountRequest",
+								"account-request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NewAccountRequestEmpresarial",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Peralta\",\r\n    \"username\": \"Anjoga\",\r\n    \"direction\": \"Lago de amatitlan\", \r\n    \"phone\": \"58694128\",\r\n    \"email\": \"pepa@gmail.com\",\r\n    \"password\": \"1234567809\",\r\n    \"nombreEmpresa\": \"Braulio.CO\",\r\n    \"income\": 101,\r\n    \"role\": \"USER_ROLE\",\r\n    \"typeAccount\": \"EMPRESARIAL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/accountRequest/account-request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"accountRequest",
+								"account-request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAccountRequest",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODZlZWM2ZDNjNzAxY2NhYzVhOTgzNWMiLCJpYXQiOjE3NTIxMDAwMjQsImV4cCI6MTc1MjExODAyNH0.wZMJO62pfrs-EU3S8qReisC53kLm-d7QKvdtM4VGKmg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/accountRequest/account-requests/view",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"accountRequest",
+								"account-requests",
+								"view"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "putAccountRequestAproved",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODZlZWM2ZDNjNzAxY2NhYzVhOTgzNWMiLCJpYXQiOjE3NTIxMDAwMjQsImV4cCI6MTc1MjExODAyNH0.wZMJO62pfrs-EU3S8qReisC53kLm-d7QKvdtM4VGKmg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"approved\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/accountRequest/account-requests/686eef0ba9c3af6740d8c755",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"accountRequest",
+								"account-requests",
+								"686eef0ba9c3af6740d8c755"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "putAccountRequestRejected",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODZlZWM2ZDNjNzAxY2NhYzVhOTgzNWMiLCJpYXQiOjE3NTIxMDAwMjQsImV4cCI6MTc1MjExODAyNH0.wZMJO62pfrs-EU3S8qReisC53kLm-d7QKvdtM4VGKmg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"rejected\",\r\n  \"rejectionReason\": \"No se proporcionó documentación\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/BancoSystem/v1/accountRequest/account-requests/686eefa9a9c3af6740d8c762",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"BancoSystem",
+								"v1",
+								"accountRequest",
+								"account-requests",
+								"686eefa9a9c3af6740d8c762"
 							]
 						}
 					},

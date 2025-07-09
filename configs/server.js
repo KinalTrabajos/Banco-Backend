@@ -17,6 +17,7 @@ import billRoutes from "../src/bills/bill.routes.js";
 import transferRoutes from "../src/transfer/transfer.routes.js";
 import historyRoutes from "../src/history/history.routes.js";
 import productRoutes from "../src/products/product.routes.js"
+import accountRequestRoutes from "../src/accountRequest/accountRequest.routes.js";
 import { rewardPointsService } from '../src/account/account.controller.js';
 
 
@@ -39,6 +40,7 @@ const routes = (app) => {
     app.use('/BancoSystem/v1/transfer', transferRoutes);
     app.use('/BancoSystem/v1/history', historyRoutes); 
     app.use('/BancoSystem/v1/products', productRoutes);   
+    app.use('/BancoSystem/v1/accountRequest', accountRequestRoutes);   
 }
 
 const conectarDB = async () => {

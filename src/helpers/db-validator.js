@@ -1,6 +1,7 @@
 import User from '../users/user.model.js'
 import Role from '../role/role.model.js';
 import Account from '../account/account.model.js';
+import AccountRequest from "../accountRequest/accountRequest.model.js";
 
 export const validRole = async(role = '') => {
     if (role === "") return;  
@@ -43,5 +44,12 @@ export const existAccountById = async (id = '') => {
     const existAccount = await Account.findById(id);
     if (!existAccount) {
         throw new Error(`Account with ID ${id} does not exist in the database`);
+    }
+};
+
+export const existAccountRequestById = async (id = '') => {
+    const exist = await AccountRequest.findById(id);
+    if (!exist) {
+        throw new Error(`The account request with id ${id} does not exist`);
     }
 };
