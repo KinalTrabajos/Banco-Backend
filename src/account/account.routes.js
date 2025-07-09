@@ -18,7 +18,7 @@ router.get(
         validatejwt,
         validateAdmin
     ],
-    getAllAccounts
+    getAllAccounts 
 )
 
 export default router;

@@ -28,6 +28,12 @@ export const createTransfer = async (req, res) => {
 
         await newTransfer.save();
 
+        await Account.findOneAndUpdate(
+            { noAccount: toAccount },
+            { $inc: { countTransactions: 1 } },
+            { new: true }
+        );
+
         const historyEntry = new History({
             fromUser,
             toUser: receiverAccount.keeperUser,
@@ -126,15 +132,6 @@ export const updateTransfer = async (req, res) => {
 
 export const cancelTransfer = async (req, res) => {
     try {
-        const { confirm } = req.body;
-        
-        if (!confirm) {
-            return res.status(400).json({
-                success: false,
-                msg: "Confirmación requerida para cancelar la transferencia"
-            });
-        }
-
         const transfer = req.transfer;
         const userId = req.usuario._id;
 

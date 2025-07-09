@@ -28,6 +28,11 @@ const accountSchema = new Schema(
             default: 0,
             min: [0, 'Points cannot be negative']
         },
+        countTransactions: {
+            type: Number,
+            default: 0,
+            min: [0, 'countTransactions no puede ser negativo']
+        }
     },
     {
         timestamps: true,
