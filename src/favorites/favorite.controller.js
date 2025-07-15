@@ -5,8 +5,9 @@ import Account from '../account/account.model.js';
 export const addFavorite = async (req = request, res = response) => {
     
     const userId = req.usuario._id;
-    const {alias, ...data} = req.body;
-    const acount = await Account.findById(data.favoriteAccount);
+    const {alias, noAccount} = req.body;
+    const acount = await Account.findOne({noAccount: noAccount});
+    console.log(acount);
     try {
         if (!userId) {
             return res.status(400).json({
