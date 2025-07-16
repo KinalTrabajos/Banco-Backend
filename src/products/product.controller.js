@@ -107,7 +107,8 @@ export const getProductsByUserId = async (req, res = response) => {
 export const updateProduct = async (req, res = response) => {
     const { id } = req.params;
     const { nameProduct, price, description, keeperUser } = req.body;
-    if (!data.keeperUser) {
+
+    if (!keeperUser) {
         return res.status(400).json({
             success: false,
             msg: "El ID del usuario es requerido"
@@ -115,14 +116,19 @@ export const updateProduct = async (req, res = response) => {
     }
 
     try {
-
         if (price <= 0) {
             return res.status(400).json({
                 success: false,
                 msg: "El precio del producto debe ser mayor a 0"
             });
         }
-        const product = await Product.findByIdAndUpdate(id, { nameProduct, price, description, keeperUser }, { new: true });
+
+        const product = await Product.findByIdAndUpdate(
+            id,
+            { nameProduct, price, description, keeperUser },
+            { new: true }
+        );
+
         res.status(200).json({
             success: true,
             msg: "Producto actualizado correctamente",
@@ -133,8 +139,8 @@ export const updateProduct = async (req, res = response) => {
             success: false,
             msg: "Error al actualizar producto",
             error: error.message
-        });
-    }
+   });
+}
 }
 
 export const deleteProduct = async (req, res = response) => {
