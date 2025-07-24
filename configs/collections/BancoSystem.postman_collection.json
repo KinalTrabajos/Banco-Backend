@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "f3d23e38-261a-4726-8a5f-5119ad237282",
+		"_postman_id": "7d745c80-bbcf-49ba-b67a-96eef1ff4aea",
 		"name": "BancoSystem",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37413968"
+		"_exporter_id": "44520325",
+		"_collection_link": "https://www.postman.com/ll9999-7980/workspace/portafolio/collection/44520325-7d745c80-bbcf-49ba-b67a-96eef1ff4aea?action=share&source=collection_link&creator=44520325"
 	},
 	"item": [
 		{
@@ -16,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"kreyes\",\r\n    \"password\": \"1234567890\"\r\n}",
+							"raw": "{\r\n    \"username\": \"crosas\",\r\n    \"password\": \"1234567890\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -84,13 +85,13 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "{{vault:json-web-token}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODgxYmI2MWY2YThkNjg4ZGQ5ZmYxM2QiLCJpYXQiOjE3NTMzMzMwMDIsImV4cCI6MTc1MzM1MTAwMn0.JZX2yGUYgV8E56D0i4nMrHNKnaQGJ1kSpG8q3jembV4",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Joaquin\",\r\n    \"username\": \"joaki\",\r\n    \"dpi\": \"1234567890364\",\r\n    \"direction\": \"En su casa\", \r\n    \"phone\": \"00112233\",\r\n    \"email\": \"joaki@gmail.com\",\r\n    \"password\": \"0987654321\",\r\n    \"work\": \"kinal\",\r\n    \"income\": 101,\r\n    \"role\": \"USER_ROLE\",\r\n    \"typeAccount\": \"NORMAL\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Cristian\",\r\n    \"username\": \"crosas\",\r\n    \"dpi\": \"1234567890123\",\r\n    \"direction\": \"En su casa\", \r\n    \"phone\": \"53274143\",\r\n    \"email\": \"crosas@gmail.com\",\r\n    \"password\": \"1234567890\",\r\n    \"work\": \"kinal\",\r\n    \"income\": 2500,\r\n    \"role\": \"USER_ROLE\",\r\n    \"typeAccount\": \"NORMAL\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -129,7 +130,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQ0OGZhMDZjNGVkYTg5ZmJiMzkzYjEiLCJpYXQiOjE3NDk5NTQwOTIsImV4cCI6MTc0OTk3MjA5Mn0.sXdBouRrI2adyCQLATLRbpKlB74UlfaquFMtCNh0Ayw",
+								"value": "{{vault:json-web-token}}",
 								"type": "text"
 							}
 						],
@@ -171,7 +172,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQ0OGZhMDZjNGVkYTg5ZmJiMzkzYjEiLCJpYXQiOjE3NDk2OTk1ODUsImV4cCI6MTc0OTcxNzU4NX0.Khe3v0yxswSSoEScgvl685VeWttwpMvrw_Cnb-Hf--U",
+								"value": "{{vault:json-web-token}}",
 								"type": "text"
 							}
 						],
@@ -395,7 +396,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODRhNGNlMjE4MzJjMzFmNWM5OWMzMjAiLCJpYXQiOjE3NTI1NTY2NjcsImV4cCI6MTc1MjU3NDY2N30.HkwVv3A5KRLxVgId-ZpZ1PCxiFikeXpVuUoizcZe4vI",
+								"value": "{{vault:json-web-token}}",
 								"type": "text"
 							}
 						],
@@ -432,7 +433,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODRhNGNlMjE4MzJjMzFmNWM5OWMzMjAiLCJpYXQiOjE3NTMzMjAxMjEsImV4cCI6MTc1MzMzODEyMX0.BQ1nc-frqjb9EDaYvNYNogFJrlm2iykglugD15bWLr8",
+								"value": "{{vault:json-web-token}}",
 								"type": "text"
 							}
 						],
@@ -466,7 +467,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQ0OGZhMDZjNGVkYTg5ZmJiMzkzYjEiLCJpYXQiOjE3NTE0MjM1NDAsImV4cCI6MTc1MTQ0MTU0MH0.OSbEmo0Ze7Seu42vEN3MNOhV6ddXaUnTIRgNSMLOVdE",
+								"value": "{{vault:json-web-token}}",
 								"type": "text"
 							}
 						],
@@ -501,7 +502,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODRhNGNlMjE4MzJjMzFmNWM5OWMzMjAiLCJpYXQiOjE3NTE0MjM5OTcsImV4cCI6MTc1MTQ0MTk5N30.evQT310Yqmdhf_Y94ma0UcQVqzY1KWVdUncPvvi6iE8",
+								"value": "{{vault:json-web-token}}",
 								"type": "text"
 							}
 						],
@@ -539,7 +540,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODRhNGNlMjE4MzJjMzFmNWM5OWMzMjAiLCJpYXQiOjE3NTMzMjAxMjEsImV4cCI6MTc1MzMzODEyMX0.BQ1nc-frqjb9EDaYvNYNogFJrlm2iykglugD15bWLr8",
+								"value": "{{vault:json-web-token}}",
 								"type": "text"
 							}
 						],
@@ -569,7 +570,7 @@
 							"query": [
 								{
 									"key": "",
-									"value": null,
+									"value": "",
 									"disabled": true
 								}
 							]
@@ -589,13 +590,13 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "{{vault:json-web-token}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODgxYmQxN2Y2YThkNjg4ZGQ5ZmYxNTciLCJpYXQiOjE3NTMzMzMwMzUsImV4cCI6MTc1MzM1MTAzNX0.gY9l7Y6_9WPNlkQ7r14siQqBoEDE0zsT1OP01KEDHLo",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"keeperUser\":\"6842f2ebcf01beca4e14db0c\",\r\n    \"items\": [\r\n    {\r\n      \"name\": \"Laptop Dell\",\r\n      \"quantity\": 1,\r\n      \"price\": 1000\r\n    },\r\n    {\r\n      \"name\": \"Mouse Logitech\",\r\n      \"quantity\": 2,\r\n      \"price\": 25\r\n    }\r\n  ]\r\n}",
+							"raw": "{\r\n    \"keeperUser\":\"6881bd17f6a8d688dd9ff157\",\r\n    \"items\": [\r\n    {\r\n      \"product\": \"6881bc39f6a8d688dd9ff144\",\r\n      \"quantity\": 1\r\n    }\r\n  ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -711,7 +712,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODRhNGNlMjE4MzJjMzFmNWM5OWMzMjAiLCJpYXQiOjE3NTE0MjgyNzMsImV4cCI6MTc1MTQ0NjI3M30.7hZnI19-XVFff6_tBIPjPYlqyMnHWe8YcfUOYKtWBX8",
+								"value": "{{vault:json-web-token}}",
 								"type": "text"
 							}
 						],
@@ -858,7 +859,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nameProduct\" : \"Consome de pollo magui\", \r\n    \"price\" : 5,\r\n    \"description\" : \"Es un botesito de consome de pollo magui\",\r\n    \"keeperUser\" : \"684a55c222ed03e9d706977f\"\r\n}",
+							"raw": "{\r\n    \"nameProduct\" : \"Consome de pollo magui\", \r\n    \"price\" : 5,\r\n    \"description\" : \"Es un botesito de consome de pollo magui\",\r\n    \"keeperUser\" : \"6842f2ebcf01beca4e14db0c\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1041,7 +1042,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQ0OGZhMDZjNGVkYTg5ZmJiMzkzYjEiLCJpYXQiOjE3NTMzMTk3NTMsImV4cCI6MTc1MzMzNzc1M30.7qrpj1x20K6-81y7dKOKUGFbXTY3A3ohRMU_pMbzs3w",
+								"value": "{{vault:json-web-token}}",
 								"type": "text"
 							}
 						],
@@ -1081,7 +1082,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQ0OGZhMDZjNGVkYTg5ZmJiMzkzYjEiLCJpYXQiOjE3NTMzMTk3NTMsImV4cCI6MTc1MzMzNzc1M30.7qrpj1x20K6-81y7dKOKUGFbXTY3A3ohRMU_pMbzs3w",
+								"value": "{{vault:json-web-token}}",
 								"type": "text"
 							}
 						],
