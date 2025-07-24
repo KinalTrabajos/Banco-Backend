@@ -10,8 +10,7 @@ export const createTransfer = async (req, res) => {
         const senderAccount = req.senderAccount;
         const receiverAccount = req.receiverAccount;
         const commissionAmount = req.commissionAmount || 0;
-
-        const totalToDeduct = amount + commissionAmount;
+        const totalToDeduct = amount + commissionAmount; 
 
         senderAccount.balance -= totalToDeduct;
         receiverAccount.balance += amount;
@@ -58,38 +57,18 @@ export const createTransfer = async (req, res) => {
 export const updateTransfer = async (req, res) => {
     try {
         const { toAccount, amount, description } = req.body;
-        const userId = req.usuario._id;
         const transfer = req.transfer;
 
-        const senderAccount = await Account.findOne({ keeperUser: userId });
-        if (!senderAccount) {
-            return res.status(404).json({ msg: 'Sender account not found' });
-        }
+        const senderAccount = req.senderAccount;
+        const oldReceiverAccount = req.oldReceiverAccount;
+        const newReceiverAccount = req.newReceiverAccount;
+        const originalCommission = req.originalCommission;
+        const newAmount = req.newAmount;
+        const newCommission = req.newCommission;
+        const totalToDeduct = req.totalToDeduct;
 
-        const oldReceiverAccount = await Account.findOne({ noAccount: transfer.toAccount });
-        if (!oldReceiverAccount) {
-            return res.status(404).json({ msg: 'Original recipient account not found' });
-        }
-
-        const originalCommission = (transfer.amount * 3.5) / 100;
         senderAccount.balance += transfer.amount + originalCommission;
         oldReceiverAccount.balance -= transfer.amount;
-
-        let newReceiverAccount = oldReceiverAccount;
-        if (toAccount && toAccount !== transfer.toAccount) {
-            newReceiverAccount = await Account.findOne({ noAccount: toAccount });
-            if (!newReceiverAccount) {
-                return res.status(404).json({ msg: 'New recipient account not found' });
-            }
-        }
-
-        const newAmount = amount ?? transfer.amount;
-        const newCommission = (newAmount * 3.5) / 100;
-        const totalToDeduct = newAmount + newCommission;
-
-        if (senderAccount.balance < totalToDeduct) {
-            return res.status(400).json({ msg: 'Insufficient balance for updated transfer' });
-        }
 
         senderAccount.balance -= totalToDeduct;
         newReceiverAccount.balance += newAmount;
@@ -97,19 +76,19 @@ export const updateTransfer = async (req, res) => {
         await Promise.all([
             senderAccount.save(),
             oldReceiverAccount.save(),
-            newReceiverAccount !== oldReceiverAccount ? newReceiverAccount.save() : null
-        ]);
+            newReceiverAccount._id.toString() !== oldReceiverAccount._id.toString() ? newReceiverAccount.save() : null
+        ].filter(Boolean)); 
 
         let updated = false;
-        if (toAccount && toAccount !== transfer.toAccount) {
+        if (toAccount !== undefined && toAccount !== transfer.toAccount.toString()) {
             transfer.toAccount = toAccount;
             updated = true;
         }
-        if (amount && amount !== transfer.amount) {
+        if (amount !== undefined && amount !== transfer.amount) {
             transfer.amount = amount;
             updated = true;
         }
-        if (description && description !== transfer.description) {
+        if (description !== undefined && description !== transfer.description) {
             transfer.description = description;
             updated = true;
         }
@@ -132,15 +111,11 @@ export const updateTransfer = async (req, res) => {
 
 export const cancelTransfer = async (req, res) => {
     try {
-        const transfer = req.transfer;
+        const transfer = req.transfer; 
         const userId = req.usuario._id;
 
         const senderAccount = await Account.findOne({ keeperUser: userId });
         const receiverAccount = await Account.findOne({ noAccount: transfer.toAccount });
-
-        if (!senderAccount || !receiverAccount) {
-            return res.status(404).json({ msg: 'Sender or receiver account not found' });
-        }
 
         const commissionAmount = (transfer.amount * 3.5) / 100;
         const totalRefund = transfer.amount + commissionAmount;

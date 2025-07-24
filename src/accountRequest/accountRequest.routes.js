@@ -10,6 +10,7 @@ import { validatejwt } from "../middlewares/validate-jwt.js";
 import { validateAdmin } from "../middlewares/validator-users.js";
 import { existAccountRequestById } from "../helpers/db-validator.js";
 import { registerValidator } from "../middlewares/validator.js";
+import { validateAccountRequestStatusUpdate } from "../middlewares/validate-account-request.js";
 
 const router = Router();
 
@@ -36,8 +37,8 @@ router.put(
         validateAdmin,
         check("id", "Invalid ID").isMongoId(),
         check("id").custom(existAccountRequestById),
-        check("status", "Status must be approved or rejected").isIn(["approved", "rejected"]),
-        validarCampos
+        validarCampos,
+        validateAccountRequestStatusUpdate
     ],
     updateRequestStatus
 );

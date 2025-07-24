@@ -50,33 +50,10 @@ export const getPendingRequests = async (req = request, res = response) => {
 };
 
 export const updateRequestStatus = async (req = request, res = response) => {
-    const { id } = req.params;
     const { status, rejectionReason } = req.body;
-
-    if (!['approved', 'rejected'].includes(status)) {
-        return res.status(400).json({
-            success: false,
-            msg: 'Estado inválido'
-        });
-    }
+    const requestAccount = req.requestAccount; 
 
     try {
-        const requestAccount = await AccountRequest.findById(id);
-
-        if (!requestAccount) {
-            return res.status(404).json({
-                success: false,
-                msg: 'Solicitud no encontrada'
-            });
-        }
-
-        if (requestAccount.status !== 'pending') {
-            return res.status(400).json({
-                success: false,
-                msg: 'Solicitud ya procesada'
-            });
-        }
-
         if (status === 'approved') {
             const newUser = new User({
                 name: requestAccount.name,
@@ -85,7 +62,7 @@ export const updateRequestStatus = async (req = request, res = response) => {
                 direction: requestAccount.direction,
                 phone: requestAccount.phone,
                 email: requestAccount.email,
-                password: requestAccount.password, 
+                password: requestAccount.password,
                 work: requestAccount.work,
                 nombreEmpresa: requestAccount.nombreEmpresa,
                 income: requestAccount.income,
@@ -126,6 +103,7 @@ export const updateRequestStatus = async (req = request, res = response) => {
         }
 
     } catch (error) {
+        console.error(error);
         res.status(500).json({
             success: false,
             msg: 'Error al actualizar estado de solicitud',

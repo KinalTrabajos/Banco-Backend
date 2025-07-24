@@ -102,6 +102,56 @@ export const validateTransferEditable = async (req, res, next) => {
     }
 };
 
+export const validateUpdateTransferData = async (req, res, next) => {
+    const { toAccount, amount } = req.body;
+    const transfer = req.transfer; 
+    const userId = req.usuario._id;
+
+    try {
+        const senderAccount = await Account.findOne({ keeperUser: userId });
+        if (!senderAccount) {
+            return res.status(404).json({ msg: 'Sender account not found' });
+        }
+
+        const oldReceiverAccount = await Account.findOne({ noAccount: transfer.toAccount });
+        if (!oldReceiverAccount) {
+            return res.status(404).json({ msg: 'Original recipient account not found' });
+        }
+
+        let newReceiverAccount = oldReceiverAccount;
+        if (toAccount && toAccount !== transfer.toAccount.toString()) {
+            newReceiverAccount = await Account.findOne({ noAccount: toAccount });
+            if (!newReceiverAccount) {
+                return res.status(404).json({ msg: 'New recipient account not found' });
+            }
+        }
+
+        const originalCommission = (transfer.amount * 3.5) / 100;
+        const newAmount = amount ?? transfer.amount;
+        const newCommission = (newAmount * 3.5) / 100;
+        const totalToDeduct = newAmount + newCommission;
+
+        const tempSenderBalance = senderAccount.balance + transfer.amount + originalCommission;
+
+        if (tempSenderBalance < totalToDeduct) {
+            return res.status(400).json({ msg: 'Insufficient balance for updated transfer' });
+        }
+
+        req.senderAccount = senderAccount;
+        req.oldReceiverAccount = oldReceiverAccount;
+        req.newReceiverAccount = newReceiverAccount;
+        req.originalCommission = originalCommission;
+        req.newAmount = newAmount;
+        req.newCommission = newCommission;
+        req.totalToDeduct = totalToDeduct;
+
+        next();
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: 'Error validating update transfer data' });
+    }
+};
+
 export const validateTransferCancelable = async (req, res, next) => {
     const { id } = req.params;
 

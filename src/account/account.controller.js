@@ -8,21 +8,14 @@ export const getAccount = async (req, res) => {
 
         if (noAccount) {
             account = await Account.findOne({ noAccount }).populate('keeperUser', 'name email username');
-        } else if (id) {
-            const user = await User.findById(id);
-            if (!user) {
-                return res.status(404).json({
-                    success: false,
-                    msg: 'Usuario con ese ID no encontrado',
-                });
-            }
-            account = await Account.findOne({ keeperUser: user._id }).populate('keeperUser', 'name email username');
+        } else if (id && req.foundUser) {
+            account = await Account.findOne({ keeperUser: req.foundUser._id }).populate('keeperUser', 'name email username');
         }
 
         if (!account) {
             return res.status(404).json({
                 success: false,
-                msg: 'Cuenta no encontrada',
+                msg: 'Cuenta no encontrada.'
             });
         }
 
@@ -32,9 +25,10 @@ export const getAccount = async (req, res) => {
         });
 
     } catch (error) {
+        console.error("Error en el controlador getAccount:", error);
         return res.status(500).json({
             success: false,
-            msg: 'Error al buscar la cuenta',
+            msg: 'Error al buscar la cuenta.',
             error: error.message
         });
     }
@@ -51,7 +45,7 @@ export const getAllAccounts = async (req, res) => {
     } catch (error) {
         return res.status(500).json({
             success: false,
-            msg: 'Error fetching accounts',
+            msg: 'Error al obtener las cuentas.',
             error: error.message
         });
     }
